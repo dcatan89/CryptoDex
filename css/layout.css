@@ -1,0 +1,13 @@
+.container {
+  height: 100vh;
+  max-width: 800px;
+}
+
+.row {
+  display: flex;
+}
+
+.col-full,
+.col-half {
+  width: 100%;
+}
