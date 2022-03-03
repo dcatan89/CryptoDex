@@ -1,10 +1,19 @@
+.hidden {
+  display: none !important;
+}
+
 .container {
-  max-width: 800px;
+  max-width: 575px;
   margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
 .row {
   display: flex;
+}
+
+.wrap {
+  flex-wrap: wrap;
 }
 
 .col-full {
@@ -13,4 +22,35 @@
 
 .col-half {
   width: 100%;
+}
+
+@media screen and (max-width: 575px) {
+  .hide-search-box {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .hamburger-icon {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 900px;
+  }
+
+  .col-full,
+  .col-half {
+    padding: 0 0.75rem;
+  }
+
+  .col-half {
+    width: 50%;
+  }
+
+  input {
+    width: 50%;
+  }
 }
