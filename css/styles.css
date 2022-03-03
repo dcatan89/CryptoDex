@@ -36,6 +36,10 @@
   width: 50px;
 }
 
+.hamburger-icon:hover {
+  cursor: pointer;
+}
+
 .align-center {
   align-self: center;
 }
