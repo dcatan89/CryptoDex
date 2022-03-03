@@ -34,6 +34,14 @@
   .hamburger-icon {
     display: none;
   }
+
+  .choice-list {
+    display: none;
+  }
+
+  .search-nav-row {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 768px) {

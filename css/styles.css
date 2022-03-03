@@ -77,6 +77,15 @@ input {
   font-size: 2.5rem;
 }
 
+.search-header {
+  color: white;
+  font-size: 2rem;
+}
+
+.search-header:hover {
+  cursor: pointer;
+}
+
 .info-box {
   background-color: rgb(22, 159, 254, 0.7);
   border: solid rgb(165, 163, 163);
