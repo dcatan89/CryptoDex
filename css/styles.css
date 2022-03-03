@@ -1,3 +1,9 @@
+.bg-logo {
+  background-image: url("images/logo.png");
+  object-fit: contain;
+  height: ;
+}
+
 .bgc-lblue {
   background-color: rgb(22, 159, 254);
 }
