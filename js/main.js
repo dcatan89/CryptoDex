@@ -31,8 +31,12 @@ function handleSearchBar(event) {
 $hamburgerIcon.addEventListener('click', hamburgerClick);
 $menuSearch.addEventListener('click', handleSearchBar);
 
-/* API Requests and Functions */
+/* API Requests and Functions GLOBAL PAGE */
 var $marketCap = document.querySelector('.for-header1');
+var $volume24H = document.querySelector('.for-header2');
+var $marketChange = document.querySelector('.for-header3');
+var $cryptosNumber = document.querySelector('.for-header4');
+
 var targetUrl = encodeURIComponent('https://api.coinpaprika.com/v1/global');
 
 var xhr = new XMLHttpRequest();
@@ -41,5 +45,18 @@ xhr.setRequestHeader('token', 'abc123');
 xhr.responseType = 'json';
 xhr.addEventListener('load', function () {
   $marketCap.textContent = '$ ' + xhr.response.market_cap_usd;
+  $volume24H.textContent = '$ ' + xhr.response.volume_24h_usd;
+  $marketChange.textContent = xhr.response.market_cap_change_24h;
+  $cryptosNumber.textContent = xhr.response.cryptocurrencies_number;
 });
 xhr.send();
+
+/* API Search Function */
+var $formSearchBar = document.querySelector('#form-search');
+
+function handleSearchSubmit(event) {
+  event.preventDefault();
+
+}
+
+$formSearchBar.addEventListener('submit', handleSearchSubmit);
