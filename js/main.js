@@ -30,3 +30,16 @@ function handleSearchBar(event) {
 
 $hamburgerIcon.addEventListener('click', hamburgerClick);
 $menuSearch.addEventListener('click', handleSearchBar);
+
+/* API Requests and Functions */
+var $marketCap = document.querySelector('.for-header1');
+var targetUrl = encodeURIComponent('https://api.coinpaprika.com/v1/global');
+
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
+xhr.setRequestHeader('token', 'abc123');
+xhr.responseType = 'json';
+xhr.addEventListener('load', function () {
+  $marketCap.textContent = '$ ' + xhr.response.market_cap_usd;
+});
+xhr.send();
