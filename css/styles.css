@@ -82,7 +82,8 @@ input {
   font-size: 2rem;
 }
 
-.search-header:hover {
+.search-header:hover,
+button:hover {
   cursor: pointer;
 }
 
