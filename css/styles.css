@@ -1,0 +1,21 @@
+.bgc-lblue {
+  background-color: rgb(22, 159, 254);
+}
+
+.bgc-dblue {
+  background-color: rgb(5, 17, 34);
+}
+
+.nav-bar {
+  height: 100px;
+  width: 100%;
+}
+
+.hamburger-icon {
+  width: 50px;
+  text-align: right;
+}
+
+.align-center {
+  align-self: center;
+}
