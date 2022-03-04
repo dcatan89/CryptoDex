@@ -38,6 +38,7 @@ var $marketChange = document.querySelector('.for-header3');
 var $cryptosNumber = document.querySelector('.for-header4');
 
 var targetUrl = encodeURIComponent('https://api.coinpaprika.com/v1/global');
+var apiUrl = encodeURIComponent('https://www.cryptingup.com/api/assets/');
 
 var xhr = new XMLHttpRequest();
 xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
@@ -51,12 +52,47 @@ xhr.addEventListener('load', function () {
 });
 xhr.send();
 
-/* API Search Function */
-var $formSearchBar = document.querySelector('#form-search');
+/* API Search Function and Data */
+var $rank = document.querySelector('.for-rank');
+var $Symbol = document.querySelector('.for-symbol');
+var $CurrentPrice = document.querySelector('.for-price');
+var $Cap = document.querySelector('.for-cap');
+var $volume = document.querySelector('.for-volume');
+var $subHeader = document.querySelector('.sub-header-crypto');
+var $mainHeader = document.querySelector('.main-header');
 
-function handleSearchSubmit(event) {
-  event.preventDefault();
+function handleId(id) {
+  var value = id.toUpperCase();
+  var xhr2 = new XMLHttpRequest();
+  xhr2.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + apiUrl + value);
+  xhr2.setRequestHeader('token', 'abc123');
+  xhr2.responseType = 'json';
+  xhr2.addEventListener('load', function () {
+    var crypto = xhr2.response.asset;
 
+    $subHeader.textContent = crypto.name;
+    $mainHeader.textContent = 'CryptoCurrency Assets';
+    $rank.textContent = Math.round(crypto.change_24h) + '%';
+    $Symbol.textContent = crypto.asset_id;
+    $CurrentPrice.textContent = '$ ' + Math.round(crypto.price);
+    $Cap.textContent = '$ ' + Math.round(crypto.market_cap);
+    $volume.textContent = '$ ' + Math.round(crypto.volume_24h);
+  });
+  xhr2.send();
 }
 
-$formSearchBar.addEventListener('submit', handleSearchSubmit);
+handleId('Eth');
+/* Data View function */
+var $view = document.querySelectorAll('.view');
+
+function dataView(string) {
+  data.view = string;
+  for (var i = 0; i < $view.length; i++) {
+    if ($view[i].getAttribute('data-view') === string) {
+      $view[i].classList.remove('hidden');
+    } else {
+      $view[i].classList.add('hidden');
+    }
+  }
+}
+dataView('cryptos');
