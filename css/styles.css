@@ -83,7 +83,8 @@ input {
 }
 
 .search-header:hover,
-button:hover {
+button:hover,
+#home-button {
   cursor: pointer;
 }
 
@@ -91,4 +92,14 @@ button:hover {
   background-color: rgb(22, 159, 254, 0.7);
   border: solid rgb(165, 163, 163);
   border-radius: 6px;
+}
+
+.watchlist-button {
+  padding: 10px 20px;
+  margin: 20px auto;
+  color: white;
+  background-color: rgb(5, 17, 34);
+  border-radius: 6px;
+  border: solid white;
+  box-shadow: 0 0 5px 5px rgb(22, 159, 254);
 }
