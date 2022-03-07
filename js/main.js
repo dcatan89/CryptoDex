@@ -33,6 +33,14 @@ function handleSearchBar(event) {
 $hamburgerIcon.addEventListener('click', hamburgerClick);
 $menuSearch.addEventListener('click', handleSearchBar);
 
+/* Home Button */
+var homeButton = document.querySelector('#home-button');
+
+homeButton.addEventListener('click', function (e) {
+  dataView('global');
+  $mainHeader.textContent = 'Global';
+});
+
 /* API Requests and Functions GLOBAL PAGE */
 var $marketCap = document.querySelector('.for-header1');
 var $volume24H = document.querySelector('.for-header2');
@@ -57,7 +65,7 @@ xhr.send();
 /* API Search Function and Data */
 var $formSearch = document.querySelector('#form-search');
 var $formSearch2 = document.querySelector('#form-search2');
-var $rank = document.querySelector('.for-rank');
+var $percentChange = document.querySelector('.for-rank');
 var $Symbol = document.querySelector('.for-symbol');
 var $CurrentPrice = document.querySelector('.for-price');
 var $Cap = document.querySelector('.for-cap');
@@ -76,21 +84,26 @@ function searchID(id) {
     var crypto = xhr2.response.asset;
 
     $subHeader.textContent = crypto.name;
-    $mainHeader.textContent = 'Assets';
-    $rank.textContent = Math.round(crypto.change_24h * 100) / 100 + '%';
+    $mainHeader.textContent = 'Assets: ' + crypto.asset_id;
+    $percentChange.textContent = Math.round(crypto.change_24h * 1000) / 1000 + '%';
     $Symbol.textContent = crypto.asset_id;
-    $CurrentPrice.textContent = '$ ' + Math.round(crypto.price * 100) / 100;
+    $CurrentPrice.textContent = '$ ' + Math.round(crypto.price * 100000) / 100000;
     $Cap.textContent = '$ ' + Math.round(crypto.market_cap);
     $volume.textContent = '$ ' + Math.round(crypto.volume_24h);
+
   });
   xhr2.send();
 }
+
+/* Search Bar/Submit Event Listeners */
 
 function handleSubmit1(event) {
   event.preventDefault();
   var searchBar1Value = $formSearch.elements.searchbar.value;
   searchID(searchBar1Value);
   dataView('cryptos');
+  data.added = false;
+  $watchListButton.textContent = 'Add to WatchList';
   $formSearch.reset();
 }
 
@@ -100,11 +113,14 @@ function handleSubmit2(event) {
   searchID(searchBar2Value);
   $dropMenu.classList.add('hidden');
   dataView('cryptos');
+  data.added = false;
+  $watchListButton.textContent = 'Add to WatchList';
   $formSearch2.reset();
 }
 
 $formSearch.addEventListener('submit', handleSubmit1);
 $formSearch2.addEventListener('submit', handleSubmit2);
+
 /* Data View function */
 var $view = document.querySelectorAll('.view');
 
@@ -118,4 +134,30 @@ function dataView(string) {
     }
   }
 }
+
+/* Add to WatchList Event Listeners/functions */
+var $watchListButton = document.querySelector('.watchlist-button');
+
+function handleWatchList(event) {
+
+  if (data.added === true) {
+    return;
+  }
+
+  data.added = true;
+  $watchListButton.textContent = 'Added';
+  var entryValues = {
+    nextId: data.nextId,
+    added: true,
+    percentChange: $percentChange.textContent,
+    symbol: $Symbol.textContent,
+    price: $CurrentPrice.textContent,
+    marketCap: $Cap.textContent,
+    volume24h: $volume.textContent
+  };
+  data.watchlist.unshift(entryValues);
+  data.nextId++;
+}
+
+$watchListButton.addEventListener('click', handleWatchList);
 dataView('global');

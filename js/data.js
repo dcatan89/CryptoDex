@@ -1,6 +1,6 @@
 /* exported data */
 var data = {
-  added: null,
+  added: false,
   view: 'global',
   nextId: 1,
   watchlist: []
