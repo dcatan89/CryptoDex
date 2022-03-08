@@ -126,6 +126,10 @@ var $view = document.querySelectorAll('.view');
 
 function dataView(string) {
   data.view = string;
+  if (data.view === 'watchlist') {
+    $mainHeader.textContent = 'My WatchList';
+  }
+
   for (var i = 0; i < $view.length; i++) {
     if ($view[i].getAttribute('data-view') === string) {
       $view[i].classList.remove('hidden');
@@ -136,7 +140,9 @@ function dataView(string) {
 }
 
 /* Add to WatchList Event Listeners/functions */
+var timeStamp = new Date();
 var $watchListButton = document.querySelector('.watchlist-button');
+var $showtimeStamp = document.querySelector('.time-stamp');
 
 function handleWatchList(event) {
 
@@ -153,11 +159,45 @@ function handleWatchList(event) {
     symbol: $Symbol.textContent,
     price: $CurrentPrice.textContent,
     marketCap: $Cap.textContent,
-    volume24h: $volume.textContent
+    volume24h: $volume.textContent,
+    timeStamp: timeStamp
   };
+  $showtimeStamp.textContent = timeStamp;
   data.watchlist.unshift(entryValues);
   data.nextId++;
 }
 
 $watchListButton.addEventListener('click', handleWatchList);
-dataView('global');
+
+/* DOM TREE CREATION */
+function watchListDomTree(entries) {
+  /* <li class="col-third ">
+        <div class="row wrap margin-top info-box">
+          <div class="row col-full  justify-center">
+            <h2 class="sub-header-crypto"></h2>
+          </div>
+          <div class="col-full row">
+            <div class="col-half div-headers">
+              <h2 class="data-rank row justify-center">Market Change</h2>
+              <h2 class="data-symbol row justify-center">Symbol</h2>
+              <h2 class="data-price row justify-center">Current Price</h2>
+              <h2 class="data-cap row justify-center">Market Cap</h2>
+              <h2 class="data-volume row justify-center">Volume 24h</h2>
+            </div>
+            <div class="col-half div-headers ">
+              <h2 class="for-rank row justify-center "></h2>
+              <h2 class="for-symbol row justify-center"></h2>
+              <h2 class="for-price row justify-center"></h2>
+              <h2 class="for-cap row justify-center"></h2>
+              <h2 class="for-volume row justify-center"></h2>
+            </div>
+          </div>
+          <div class="col-full row justify-center">
+            <button class="view-button">View</button>
+          </div>
+        </div>
+      </li>
+  */
+}
+watchListDomTree();
+dataView('watchlist');

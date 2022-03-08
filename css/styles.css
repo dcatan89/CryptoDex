@@ -103,3 +103,13 @@ button:hover,
   border: solid white;
   box-shadow: 0 0 5px 5px rgb(22, 159, 254);
 }
+
+.view-button {
+  padding: 10px 20px;
+  margin: 20px auto;
+  color: white;
+  background-color: rgb(5, 17, 34);
+  border-radius: 6px;
+  border: solid white;
+  box-shadow: 0 0 5px 5px rgb(22, 159, 254);
+}

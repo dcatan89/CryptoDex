@@ -16,12 +16,14 @@
   flex-wrap: wrap;
 }
 
-.col-full {
+.col-full,
+.col-half,
+.col-third {
   width: 100%;
 }
 
-.col-half {
-  width: 100%;
+.div-headers > h2 {
+  font-size: 24px;
 }
 
 @media screen and (max-width: 575px) {
@@ -50,12 +52,22 @@
   }
 
   .col-full,
-  .col-half {
+  .col-half,
+  .col-third {
     padding: 0 0.75rem;
   }
 
   .col-half {
     width: 50%;
+  }
+
+  .col-third {
+    width: calc(100% / 3);
+  }
+
+  .div-headers > h2 {
+    font-size: 14px;
+    text-align: center;
   }
 
   input {
