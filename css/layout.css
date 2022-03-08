@@ -16,22 +16,16 @@
   flex-wrap: wrap;
 }
 
-.col-full,
-.col-half,
-.col-third {
+.col-full {
   width: 100%;
 }
 
-.div-headers > h2 {
-  font-size: 24px;
+.col-half {
+  width: 100%;
 }
 
 @media screen and (max-width: 575px) {
   .hide-search-box {
-    display: none;
-  }
-
-  .watchlist-anchor {
     display: none;
   }
 }
@@ -56,22 +50,12 @@
   }
 
   .col-full,
-  .col-half,
-  .col-third {
+  .col-half {
     padding: 0 0.75rem;
   }
 
   .col-half {
     width: 50%;
-  }
-
-  .col-third {
-    width: calc(100% / 3);
-  }
-
-  .div-headers > h2 {
-    font-size: 14px;
-    text-align: center;
   }
 
   input {
