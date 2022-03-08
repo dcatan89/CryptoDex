@@ -25,6 +25,7 @@ function handleSearchBar(event) {
     dataView('watchlist');
     $dropMenu.classList.add('hidden');
     $searchBar.classList.add('hidden');
+    menu = 'closed';
     bar = 'closed';
   } else if (bar === 'closed' || event.target.textContent === $menuSearch.textContent) {
     $searchBar.classList.remove('hidden');
@@ -39,6 +40,11 @@ function handleSearchBar(event) {
 $hamburgerIcon.addEventListener('click', hamburgerClick);
 $menuSearch.addEventListener('click', handleSearchBar);
 $watchList.addEventListener('click', handleSearchBar);
+window.addEventListener('scroll', function (e) {
+  $dropMenu.classList.add('hidden');
+  menu = 'closed';
+  bar = 'closed';
+});
 
 /* Home Button */
 var homeButton = document.querySelector('#home-button');
