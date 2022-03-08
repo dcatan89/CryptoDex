@@ -336,3 +336,4 @@ function top100API(start, end) {
   xhr3.send();
 }
 top100API(1, 2);
+top100API(1, 3);
