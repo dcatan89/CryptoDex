@@ -388,3 +388,22 @@ function backtoWatchlistHandle(event) {
   data.edit = null;
 }
 $backtoWatchlist.addEventListener('click', backtoWatchlistHandle);
+
+/* Open and Close Modal
+  Confirm Removal Function-Removes from Watchlist */
+var $openModal = document.querySelector('#remove-button');
+var $cancelButton = document.querySelector('.cancel');
+var $modalOverlay = document.querySelector('.overlay');
+var modal = 'closed';
+function modalToggle(event) {
+  if (modal === 'closed') {
+    $modalOverlay.classList.remove('hidden');
+    modal = 'open';
+  } else {
+    $modalOverlay.classList.add('hidden');
+    modal = 'closed';
+  }
+}
+
+$openModal.addEventListener('click', modalToggle);
+$cancelButton.addEventListener('click', modalToggle);

@@ -22,6 +22,10 @@
   width: 100%;
 }
 
+.modal-box > .col-half {
+  width: 50%;
+}
+
 .div-headers > h2 {
   font-size: 24px;
 }
@@ -72,6 +76,11 @@
   .div-headers > h2 {
     font-size: 14px;
     text-align: center;
+  }
+
+  .modal-box {
+    height: 400px;
+    width: 600px;
   }
 
   input {

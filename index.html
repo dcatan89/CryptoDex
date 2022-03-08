@@ -9,7 +9,16 @@
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="bgc-dblue bg-logo">
+<body class="bgc-dblue position-relative bg-logo">
+  <div class="overlay row justify-center align-center hidden">
+    <div class="col-full modal-box">
+      <h3 class="col-full row justify-center"> Remove from WatchList?</h3>
+      <div class="button-box col-full position-relative align-end row">
+        <button class="confirm">Confirm</button>
+        <button class="cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
   <header>
     <form id="form-search">
       <div class="row bgc-lblue nav-bar">
@@ -125,9 +134,7 @@
       <div class="col-full row justify-center">
         <button class="added-button"> <span class="checked">&#10003;</span>  Added</button>
       </div>
-      <div class="col-full tstamp row justify-center">
-
-      </div>
+      <div class="col-full tstamp row justify-center"></div>
     </div>
     <div class="row margin-top view hidden" data-view="edit-list">
       <div class="col-half">
