@@ -13,8 +13,9 @@
   <header>
     <form id="form-search">
       <div class="row bgc-lblue nav-bar">
-        <div class="col-half align-center">
+        <div class="row col-half align-center">
           <h2 id="home-button">CryptoDex</h2>
+          <a class="row justify-center watchlist-anchor align-center col-half" href="">Watchlist</a>
         </div>
         <div class="col-half align-center hamburger-icon">
           <img class="hamburger-icon " src="images/hamburger.png" alt="h-icon">
@@ -22,7 +23,7 @@
         <div class="col-half hide-search-box align-center row justify-right">
           <label for="searchbar"></label>
           <input placeholder="Search Using Symbol" class="search-bar" required name="searchbar" type="text" id="search-bar">
-          <button class="search-button sbutton1" type="submit">Search</button>
+          <button class="search-button sbutton1" type="submit" data-view="cryptos">Search</button>
         </div>
       </div>
     </form>
@@ -31,21 +32,29 @@
         <div class="col-full  align-center row justify-center">
           <label for="searchbar2"></label>
           <input placeholder="Search Using Symbol" class="search-bar2" required name="searchbar2" type="text" id="search-bar2">
-          <button class="search-button sbutton2" type="submit">Search</button>
+          <button class="search-button sbutton2" type="submit" data-view="cryptos">Search</button>
         </div>
       </div>
     </form>
   </header>
   <main>
     <div class="row bgc-lblue-transparent fixed-position col-full choice-list hidden">
-      <div class="col-full ">
+      <div class="col-full">
         <a class="search-header" href="">Search</a>
       </div>
+      <div class="row bgc-lblue-transparent fixed-position col-full choice-list watchlist-row">
+        <div class="col-full">
+          <a class="watchlist-header" href="" data-view="watchlist">Watchlist</a>
+        </div>
+      </div>
     </div>
-    <div class="row">
-      <div class="col-full margin-top border-white">
+    <div class="row ">
+      <div class=" row justify-center margin-top col-full border-white">
         <h1 class="main-header">Global</h1>
       </div>
+    </div>
+    <div class="row col-full margin-top justify-center no-entries view " data-view="watchlist">
+      <h2 class=""> Please Add to Your WatchList </h2>
     </div>
     <div class="row wrap margin-top info-box view hidden" data-view="global">
       <div class="row col-full  justify-center">
@@ -62,8 +71,8 @@
         <div class="col-half ">
           <h2 class="for-header1 row justify-center "></h2>
           <h2 class="for-header2 row justify-center"></h2>
-          <h2 class="for-header3 row justify-center">1.95%</h2>
-          <h2 class="for-header4 row justify-center">1500</h2>
+          <h2 class="for-header3 row justify-center"></h2>
+          <h2 class="for-header4 row justify-center"></h2>
           <h2 class="for-header5 row justify-center"></h2>
         </div>
       </div>
@@ -91,7 +100,9 @@
       <div class="col-full row justify-center">
         <button class="watchlist-button">Add to WatchList</button>
       </div>
+      <div class="col-full time-stamp row justify-center"></div>
     </div>
+    <ul class="view row wrap" data-view="watchlist" id="ul-entries"></ul>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
