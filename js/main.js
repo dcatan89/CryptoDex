@@ -153,7 +153,7 @@ function handleWatchList(event) {
   data.added = true;
   $watchListButton.textContent = 'Added';
   var entryValues = {
-    nextId: data.nextId,
+    id: data.nextId,
     added: true,
     name: $subHeader.textContent,
     percentChange: $percentChange.textContent,
@@ -196,6 +196,7 @@ function watchListDomTree(entries) {
           <div class="col-full row justify-center">
             <button class="view-button">View</button>
           </div>
+          <div class="col-full time-stamp row justify-center"></div>
         </div>
       </li>
   */
@@ -218,8 +219,11 @@ function watchListDomTree(entries) {
   var $datavolumeh2 = document.createElement('h2');
   var $divButton = document.createElement('div');
   var $button = document.createElement('button');
+  var $divtimeStamp = document.createElement('div');
 
   $li.className = 'col-third';
+  $li.setAttribute('entryId', data.id);
+  $li.setAttribute('data-added', true);
   $divSubHead.className = 'row wrap margin-top info-box';
   $divH2SubHead.className = 'row col-full justify-center';
   $h2SubHead.className = 'sub-header-crypto';
@@ -238,9 +242,56 @@ function watchListDomTree(entries) {
   $datavolumeh2.className = 'row justify-center';
   $divButton.className = 'col-full row justify-center';
   $button.className = 'view-button';
+  $divtimeStamp.className = 'col-full row justify-center';
 
-  $MrktChangeh2.textcontent = 'Market Change';
+  $h2SubHead.textContent = entries.name;
+  $MrktChangeh2.textContent = 'Market Change';
+  $symbolh2.textContent = 'Symbol';
+  $priceh2.textContent = 'Current Price';
+  $caph2.textContent = 'Market Cap';
+  $volumeh2.textContent = 'Volume 24h';
+  $dataMrkth2.textContent = entries.percentChange;
+  $dataSymbolh2.textContent = entries.symbol;
+  $dataPriceh2.textContent = entries.price;
+  $datacaph2.textContent = entries.marketCap;
+  $datavolumeh2.textContent = entries.volume24h;
+  $button.textContent = 'View';
+  $divtimeStamp.textContent = entries.timeStamp;
+
+  $li.appendChild($divSubHead);
+  $divSubHead.appendChild($divH2SubHead);
+  $divH2SubHead.appendChild($h2SubHead);
+
+  $divSubHead.appendChild($divforContent);
+  $divforContent.appendChild($div4ContentHeaders);
+  $divforContent.appendChild($div4ContentData);
+  $div4ContentHeaders.appendChild($MrktChangeh2);
+  $div4ContentHeaders.appendChild($symbolh2);
+  $div4ContentHeaders.appendChild($priceh2);
+  $div4ContentHeaders.appendChild($caph2);
+  $div4ContentHeaders.appendChild($volumeh2);
+  $div4ContentData.appendChild($dataMrkth2);
+  $div4ContentData.appendChild($dataSymbolh2);
+  $div4ContentData.appendChild($dataPriceh2);
+  $div4ContentData.appendChild($datacaph2);
+  $div4ContentData.appendChild($datavolumeh2);
+
+  $divSubHead.appendChild($divButton);
+  $divButton.appendChild($button);
+  $divSubHead.appendChild($divtimeStamp);
+
   return $li;
 }
-watchListDomTree();
+
+var $ulEntries = document.querySelector('#ul-entries');
+
+function domContentLoadedHandle(event) {
+  for (var index = 0; index < data.watchlist.length; index++) {
+    var $entries = watchListDomTree(data.watchlist[index]);
+    $ulEntries.appendChild($entries);
+  }
+  dataView(data.view);
+}
+
+window.addEventListener('DOMContentLoaded', domContentLoadedHandle);
 dataView('watchlist');
