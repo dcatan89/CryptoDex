@@ -162,7 +162,6 @@ function dataView(string) {
 /* Add to WatchList Event Listeners/functions */
 var timeStamp = new Date();
 var $watchListButton = document.querySelector('.watchlist-button');
-var $showtimeStamp = document.querySelector('.time-stamp');
 
 function handleWatchList(event) {
 
@@ -170,7 +169,6 @@ function handleWatchList(event) {
     return;
   }
 
-  data.added = true;
   var entryValues = {
     id: data.nextId,
     added: true,
@@ -182,7 +180,6 @@ function handleWatchList(event) {
     volume24h: $volume.textContent,
     timeStamp: timeStamp
   };
-  $showtimeStamp.textContent = timeStamp;
   data.watchlist.unshift(entryValues);
   data.nextId++;
   $ulEntries.prepend(watchListDomTree(entryValues));
