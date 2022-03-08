@@ -23,7 +23,7 @@
         <div class="col-half hide-search-box align-center row justify-right">
           <label for="searchbar"></label>
           <input placeholder="Search Using Symbol" class="search-bar" required name="searchbar" type="text" id="search-bar">
-          <button class="search-button sbutton1" type="submit">Search</button>
+          <button class="search-button sbutton1" type="submit" data-view="cryptos">Search</button>
         </div>
       </div>
     </form>
@@ -32,7 +32,7 @@
         <div class="col-full  align-center row justify-center">
           <label for="searchbar2"></label>
           <input placeholder="Search Using Symbol" class="search-bar2" required name="searchbar2" type="text" id="search-bar2">
-          <button class="search-button sbutton2" type="submit">Search</button>
+          <button class="search-button sbutton2" type="submit" data-view="cryptos">Search</button>
         </div>
       </div>
     </form>
@@ -44,7 +44,7 @@
       </div>
       <div class="row bgc-lblue-transparent fixed-position col-full choice-list watchlist-row">
         <div class="col-full">
-          <a class="watchlist-header" href="">Watchlist</a>
+          <a class="watchlist-header" href="" data-view="watchlist">Watchlist</a>
         </div>
       </div>
     </div>
@@ -52,6 +52,9 @@
       <div class=" row justify-center margin-top col-full border-white">
         <h1 class="main-header">Global</h1>
       </div>
+    </div>
+    <div class="row col-full margin-top justify-center no-entries view " data-view="watchlist">
+      <h2 class=""> Please Add to Your WatchList </h2>
     </div>
     <div class="row wrap margin-top info-box view hidden" data-view="global">
       <div class="row col-full  justify-center">

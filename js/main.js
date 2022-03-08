@@ -1,11 +1,12 @@
 
-/* Hamburger Icon click */
+/* Hamburger Icon click and Dropdown Menu */
 var $hamburgerIcon = document.querySelector('.hamburger-icon');
 var $dropMenu = document.querySelector('.choice-list');
 var $menuSearch = document.querySelector('.search-header');
 var $searchBar = document.querySelector('.search-nav-row');
 var $watchList = document.querySelector('.watchlist-header');
 var $watchListAnchor = document.querySelector('.watchlist-anchor');
+var $noEntriesMsg = document.querySelector('.no-entries');
 var menu = 'closed';
 var bar = 'closed';
 
@@ -22,7 +23,9 @@ function hamburgerClick(event) {
 
 function handleSearchBar(event) {
   event.preventDefault();
-  if (event.target.textContent === 'Watchlist') {
+  var viewName = event.target.textContent;
+
+  if (viewName === 'Watchlist') {
     dataView('watchlist');
     $dropMenu.classList.add('hidden');
     $searchBar.classList.add('hidden');
@@ -105,6 +108,7 @@ function searchID(id) {
     $CurrentPrice.textContent = '$ ' + Math.round(crypto.price * 100000) / 100000;
     $Cap.textContent = '$ ' + Math.round(crypto.market_cap);
     $volume.textContent = '$ ' + Math.round(crypto.volume_24h);
+    dataView('cryptos');
 
   });
   xhr2.send();
@@ -139,16 +143,19 @@ var $view = document.querySelectorAll('.view');
 
 function dataView(string) {
   data.view = string;
+
   if (data.view === 'watchlist') {
     $mainHeader.textContent = 'My WatchList';
   }
-
   for (var i = 0; i < $view.length; i++) {
     if ($view[i].getAttribute('data-view') === string) {
       $view[i].classList.remove('hidden');
     } else {
       $view[i].classList.add('hidden');
     }
+  }
+  if (data.watchlist.length !== 0) {
+    $noEntriesMsg.classList.add('hidden');
   }
 }
 
@@ -305,6 +312,9 @@ function domContentLoadedHandle(event) {
   for (var index = 0; index < data.watchlist.length; index++) {
     var $entries = watchListDomTree(data.watchlist[index]);
     $ulEntries.appendChild($entries);
+  }
+  if (data.view === 'cryptos') {
+    dataView('global');
   }
   dataView(data.view);
 }
