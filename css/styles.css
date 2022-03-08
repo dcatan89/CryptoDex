@@ -82,6 +82,15 @@ input {
   font-size: 2rem;
 }
 
+.watchlist-header {
+  color: white;
+  font-size: 2rem;
+}
+
+.watchlist-row {
+  top: 140px;
+}
+
 .search-header:hover,
 button:hover,
 #home-button {

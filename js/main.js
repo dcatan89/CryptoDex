@@ -4,6 +4,7 @@ var $hamburgerIcon = document.querySelector('.hamburger-icon');
 var $dropMenu = document.querySelector('.choice-list');
 var $menuSearch = document.querySelector('.search-header');
 var $searchBar = document.querySelector('.search-nav-row');
+var $watchList = document.querySelector('.watchlist-header');
 var menu = 'closed';
 var bar = 'closed';
 
@@ -20,7 +21,12 @@ function hamburgerClick(event) {
 
 function handleSearchBar(event) {
   event.preventDefault();
-  if (bar === 'closed') {
+  if (event.target.textContent === 'Watchlist') {
+    dataView('watchlist');
+    $dropMenu.classList.add('hidden');
+    $searchBar.classList.add('hidden');
+    bar = 'closed';
+  } else if (bar === 'closed' || event.target.textContent === $menuSearch.textContent) {
     $searchBar.classList.remove('hidden');
     $dropMenu.classList.add('hidden');
     bar = 'open';
@@ -32,6 +38,7 @@ function handleSearchBar(event) {
 
 $hamburgerIcon.addEventListener('click', hamburgerClick);
 $menuSearch.addEventListener('click', handleSearchBar);
+$watchList.addEventListener('click', handleSearchBar);
 
 /* Home Button */
 var homeButton = document.querySelector('#home-button');
@@ -57,7 +64,7 @@ xhr.responseType = 'json';
 xhr.addEventListener('load', function () {
   $marketCap.textContent = '$ ' + xhr.response.market_cap_usd;
   $volume24H.textContent = '$ ' + xhr.response.volume_24h_usd;
-  $marketChange.textContent = xhr.response.market_cap_change_24h;
+  $marketChange.textContent = xhr.response.market_cap_change_24h + '%';
   $cryptosNumber.textContent = xhr.response.cryptocurrencies_number;
 });
 xhr.send();
@@ -166,6 +173,7 @@ function handleWatchList(event) {
   $showtimeStamp.textContent = timeStamp;
   data.watchlist.unshift(entryValues);
   data.nextId++;
+  dataView('watchlist');
 }
 
 $watchListButton.addEventListener('click', handleWatchList);
@@ -283,6 +291,8 @@ function watchListDomTree(entries) {
   return $li;
 }
 
+/* Dom ContentLoaded Event Listener */
+
 var $ulEntries = document.querySelector('#ul-entries');
 
 function domContentLoadedHandle(event) {
@@ -294,4 +304,3 @@ function domContentLoadedHandle(event) {
 }
 
 window.addEventListener('DOMContentLoaded', domContentLoadedHandle);
-dataView('watchlist');
