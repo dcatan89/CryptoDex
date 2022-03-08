@@ -21,6 +21,7 @@
 
 .border-white {
   border: solid white;
+  box-shadow: 0 0 5px 5px rgb(22, 159, 254);
   border-radius: 6px;
 }
 
@@ -70,6 +71,7 @@ input {
 
 .main-header {
   font-size: 3rem;
+  margin-top: 0;
   margin-bottom: 0;
 }
 
@@ -121,4 +123,9 @@ button:hover,
   border-radius: 6px;
   border: solid white;
   box-shadow: 0 0 5px 5px rgb(22, 159, 254);
+}
+
+.watchlist-anchor {
+  color: white;
+  font-size: large;
 }

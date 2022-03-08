@@ -5,6 +5,7 @@ var $dropMenu = document.querySelector('.choice-list');
 var $menuSearch = document.querySelector('.search-header');
 var $searchBar = document.querySelector('.search-nav-row');
 var $watchList = document.querySelector('.watchlist-header');
+var $watchListAnchor = document.querySelector('.watchlist-anchor');
 var menu = 'closed';
 var bar = 'closed';
 
@@ -40,6 +41,7 @@ function handleSearchBar(event) {
 $hamburgerIcon.addEventListener('click', hamburgerClick);
 $menuSearch.addEventListener('click', handleSearchBar);
 $watchList.addEventListener('click', handleSearchBar);
+$watchListAnchor.addEventListener('click', handleSearchBar);
 window.addEventListener('scroll', function (e) {
   $dropMenu.classList.add('hidden');
   menu = 'closed';
@@ -116,7 +118,6 @@ function handleSubmit1(event) {
   searchID(searchBar1Value);
   dataView('cryptos');
   data.added = false;
-  $watchListButton.textContent = 'Add to WatchList';
   $formSearch.reset();
 }
 
@@ -127,7 +128,6 @@ function handleSubmit2(event) {
   $dropMenu.classList.add('hidden');
   dataView('cryptos');
   data.added = false;
-  $watchListButton.textContent = 'Add to WatchList';
   $formSearch2.reset();
 }
 
@@ -164,7 +164,6 @@ function handleWatchList(event) {
   }
 
   data.added = true;
-  $watchListButton.textContent = 'Added';
   var entryValues = {
     id: data.nextId,
     added: true,
@@ -179,6 +178,7 @@ function handleWatchList(event) {
   $showtimeStamp.textContent = timeStamp;
   data.watchlist.unshift(entryValues);
   data.nextId++;
+  $ulEntries.prepend(watchListDomTree(entryValues));
   dataView('watchlist');
 }
 

@@ -30,6 +30,10 @@
   .hide-search-box {
     display: none;
   }
+
+  .watchlist-anchor {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 576px) {
