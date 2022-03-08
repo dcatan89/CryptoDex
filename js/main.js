@@ -73,10 +73,10 @@ xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
 xhr.setRequestHeader('token', 'abc123');
 xhr.responseType = 'json';
 xhr.addEventListener('load', function () {
-  $marketCap.textContent = '$ ' + xhr.response.market_cap_usd;
-  $volume24H.textContent = '$ ' + xhr.response.volume_24h_usd;
+  $marketCap.textContent = '$ ' + xhr.response.market_cap_usd.toLocaleString('en-US');
+  $volume24H.textContent = '$ ' + xhr.response.volume_24h_usd.toLocaleString('en-US');
   $marketChange.textContent = xhr.response.market_cap_change_24h + '%';
-  $cryptosNumber.textContent = xhr.response.cryptocurrencies_number;
+  $cryptosNumber.textContent = xhr.response.cryptocurrencies_number.toLocaleString('en-US');
 });
 xhr.send();
 
@@ -105,9 +105,9 @@ function searchID(id) {
     $mainHeader.textContent = 'Assets: ' + crypto.asset_id;
     $percentChange.textContent = Math.round(crypto.change_24h * 1000) / 1000 + '%';
     $Symbol.textContent = crypto.asset_id;
-    $CurrentPrice.textContent = '$ ' + Math.round(crypto.price * 100000) / 100000;
-    $Cap.textContent = '$ ' + Math.round(crypto.market_cap);
-    $volume.textContent = '$ ' + Math.round(crypto.volume_24h);
+    $CurrentPrice.textContent = '$ ' + (Math.round(crypto.price * 100000) / 100000).toLocaleString('en-US');
+    $Cap.textContent = '$ ' + Math.round(crypto.market_cap).toLocaleString('en-US');
+    $volume.textContent = '$ ' + Math.round(crypto.volume_24h).toLocaleString('en-US');
     dataView('cryptos');
 
   });
@@ -317,3 +317,23 @@ function domContentLoadedHandle(event) {
 }
 
 window.addEventListener('DOMContentLoaded', domContentLoadedHandle);
+
+/* TOP 100 API function */
+
+var apiUrlAll = encodeURIComponent('https://www.cryptingup.com/api/assets');
+
+function top100API(start, end) {
+  var xhr3 = new XMLHttpRequest();
+  xhr3.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + apiUrlAll);
+  xhr3.setRequestHeader('token', 'abc123');
+  xhr3.responseType = 'json';
+  xhr3.addEventListener('load', function () {
+    for (var i = start; i <= end; i++) {
+      var api = i;
+    }
+    return api;
+  });
+  xhr3.send();
+}
+top100API(1, 2);
+top100API(1, 3);
