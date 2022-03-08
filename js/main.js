@@ -155,6 +155,7 @@ function handleWatchList(event) {
   var entryValues = {
     nextId: data.nextId,
     added: true,
+    name: $subHeader.textContent,
     percentChange: $percentChange.textContent,
     symbol: $Symbol.textContent,
     price: $CurrentPrice.textContent,
@@ -174,7 +175,7 @@ function watchListDomTree(entries) {
   /* <li class="col-third ">
         <div class="row wrap margin-top info-box">
           <div class="row col-full  justify-center">
-            <h2 class="sub-header-crypto"></h2>
+            <h2 class="sub-header-crypto">BTC</h2>
           </div>
           <div class="col-full row">
             <div class="col-half div-headers">
@@ -198,6 +199,48 @@ function watchListDomTree(entries) {
         </div>
       </li>
   */
+  var $li = document.createElement('li');
+  var $divSubHead = document.createElement('div');
+  var $divH2SubHead = document.createElement('div');
+  var $h2SubHead = document.createElement('h2');
+  var $divforContent = document.createElement('div');
+  var $div4ContentHeaders = document.createElement('div');
+  var $div4ContentData = document.createElement('div');
+  var $MrktChangeh2 = document.createElement('h2');
+  var $symbolh2 = document.createElement('h2');
+  var $priceh2 = document.createElement('h2');
+  var $caph2 = document.createElement('h2');
+  var $volumeh2 = document.createElement('h2');
+  var $dataMrkth2 = document.createElement('h2');
+  var $dataSymbolh2 = document.createElement('h2');
+  var $dataPriceh2 = document.createElement('h2');
+  var $datacaph2 = document.createElement('h2');
+  var $datavolumeh2 = document.createElement('h2');
+  var $divButton = document.createElement('div');
+  var $button = document.createElement('button');
+
+  $li.className = 'col-third';
+  $divSubHead.className = 'row wrap margin-top info-box';
+  $divH2SubHead.className = 'row col-full justify-center';
+  $h2SubHead.className = 'sub-header-crypto';
+  $divforContent.className = 'col-full row';
+  $div4ContentHeaders.className = 'col-half div-headers';
+  $div4ContentData.className = 'col-half div-headers';
+  $MrktChangeh2.className = 'row justify-center';
+  $symbolh2.className = 'row justify-center';
+  $priceh2.className = 'row justify-center';
+  $caph2.className = 'row justify-center';
+  $volumeh2.className = 'row justify-center';
+  $dataMrkth2.className = 'row justify-center';
+  $dataSymbolh2.className = 'row justify-center';
+  $dataPriceh2.className = 'row justify-center';
+  $datacaph2.className = 'row justify-center';
+  $datavolumeh2.className = 'row justify-center';
+  $divButton.className = 'col-full row justify-center';
+  $button.className = 'view-button';
+
+  $MrktChangeh2.textcontent = 'Market Change';
+  return $li;
 }
 watchListDomTree();
 dataView('watchlist');
