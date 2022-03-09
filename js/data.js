@@ -3,7 +3,8 @@ var data = {
   added: false,
   view: 'global',
   nextId: 1,
-  watchlist: []
+  watchlist: [],
+  edit: null
 };
 
 var previousDataJSON = localStorage.getItem('data-local-storage');

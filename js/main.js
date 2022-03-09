@@ -240,10 +240,10 @@ function watchListDomTree(entries) {
   var $divtimeStamp = document.createElement('div');
 
   $li.className = 'col-third';
-  $li.setAttribute('entryId', data.id);
+  $li.setAttribute('data-id', entries.id);
   $li.setAttribute('data-added', true);
   $divSubHead.className = 'row wrap margin-top info-box';
-  $divH2SubHead.className = 'row col-full justify-center';
+  $divH2SubHead.className = 'row col-full justify-center ';
   $h2SubHead.className = 'sub-header-crypto';
   $divforContent.className = 'col-full row';
   $div4ContentHeaders.className = 'col-half div-headers';
@@ -260,6 +260,8 @@ function watchListDomTree(entries) {
   $datavolumeh2.className = 'row justify-center';
   $divButton.className = 'col-full row justify-center';
   $button.className = 'view-button';
+  $button.setAttribute('data-id', entries.id);
+  $button.setAttribute('data-view', 'edit-list');
   $divtimeStamp.className = 'col-full row justify-center';
 
   $h2SubHead.textContent = entries.name;
@@ -310,10 +312,12 @@ function domContentLoadedHandle(event) {
     var $entries = watchListDomTree(data.watchlist[index]);
     $ulEntries.appendChild($entries);
   }
+
   if (data.view === 'cryptos') {
     dataView('global');
   }
   dataView(data.view);
+  dataForWatchList();
 }
 
 window.addEventListener('DOMContentLoaded', domContentLoadedHandle);
@@ -323,6 +327,9 @@ window.addEventListener('DOMContentLoaded', domContentLoadedHandle);
 var apiUrlAll = encodeURIComponent('https://www.cryptingup.com/api/assets');
 
 function top100API(start, end) {
+  if (!end || end < start) {
+    return;
+  }
   var xhr3 = new XMLHttpRequest();
   xhr3.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + apiUrlAll);
   xhr3.setRequestHeader('token', 'abc123');
@@ -335,5 +342,91 @@ function top100API(start, end) {
   });
   xhr3.send();
 }
-top100API(1, 2);
-top100API(1, 3);
+top100API(1, 1);
+
+/* Bubbling Click Event for Watchlist */
+/* Numbers Correspond to the edit list order */
+var $timeStamp = document.querySelector('.tstamp');
+var $subHead = document.querySelector('.edit-subhead');
+var $edit1 = document.querySelector('.edit1');
+var $edit2 = document.querySelector('.edit2');
+var $edit3 = document.querySelector('.edit3');
+var $edit4 = document.querySelector('.edit4');
+var $edit5 = document.querySelector('.edit5');
+
+function handleEdit(event) {
+  var viewName = event.target.getAttribute('data-view');
+  var entryId = event.target.getAttribute('data-id');
+
+  if (event.target.matches('.view-button')) {
+    dataView(viewName);
+    data.edit = parseInt(entryId);
+    dataForWatchList();
+  }
+}
+
+function dataForWatchList() {
+  if (data.view === 'watchlist') {
+    $mainHeader.textContent = 'My WatchList';
+  } else {
+    $mainHeader.textContent = 'Asset Overview';
+  }
+  for (var i = 0; i < data.watchlist.length; i++) {
+    if (data.edit === data.watchlist[i].id) {
+      $subHead.textContent = data.watchlist[i].name;
+      $edit1.textContent = data.watchlist[i].percentChange;
+      $edit2.textContent = data.watchlist[i].symbol;
+      $edit3.textContent = data.watchlist[i].price;
+      $edit4.textContent = data.watchlist[i].marketCap;
+      $edit5.textContent = data.watchlist[i].volume24h;
+      $timeStamp.textContent = data.watchlist[i].timeStamp;
+    }
+  }
+}
+
+$ulEntries.addEventListener('click', handleEdit);
+
+/* Back to Watchlist handleClick */
+var $backtoWatchlist = document.querySelector('#back-to-list');
+function backtoWatchlistHandle(event) {
+  dataView('watchlist');
+  data.edit = null;
+}
+$backtoWatchlist.addEventListener('click', backtoWatchlistHandle);
+
+/* Open and Close Modal
+  Confirm Removal Function-Removes from Watchlist */
+var $openModal = document.querySelector('#remove-button');
+var $cancelButton = document.querySelector('.cancel');
+var $removeButton = document.querySelector('.confirm');
+var $modalOverlay = document.querySelector('.overlay');
+var modal = 'closed';
+
+function modalToggle(event) {
+  if (modal === 'closed') {
+    $modalOverlay.classList.remove('hidden');
+    modal = 'open';
+  } else {
+    $modalOverlay.classList.add('hidden');
+    modal = 'closed';
+  }
+}
+
+$openModal.addEventListener('click', modalToggle);
+$cancelButton.addEventListener('click', modalToggle);
+
+/* Deleting from the list function/event listener */
+$removeButton.addEventListener('click', function (e) {
+  var $li = document.querySelectorAll('li');
+  for (var i = 0; i < data.watchlist.length; i++) {
+    if (data.edit === data.watchlist[i].id) {
+      data.watchlist.splice(data.watchlist.length - data.edit, 1);
+      $li[i].remove();
+    }
+  }
+  data.edit = null;
+  $modalOverlay.classList.add('hidden');
+  modal = 'closed';
+  data.nextId--;
+  dataView('watchlist');
+});
