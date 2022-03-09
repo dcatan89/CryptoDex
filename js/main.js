@@ -312,6 +312,7 @@ function domContentLoadedHandle(event) {
     var $entries = watchListDomTree(data.watchlist[index]);
     $ulEntries.appendChild($entries);
   }
+
   if (data.view === 'cryptos') {
     dataView('global');
   }
@@ -365,7 +366,11 @@ function handleEdit(event) {
 }
 
 function dataForWatchList() {
-  $mainHeader.textContent = 'Asset Overview';
+  if (data.view === 'watchlist') {
+    $mainHeader.textContent = 'My WatchList';
+  } else {
+    $mainHeader.textContent = 'Asset Overview';
+  }
   for (var i = 0; i < data.watchlist.length; i++) {
     if (data.edit === data.watchlist[i].id) {
       $subHead.textContent = data.watchlist[i].name;
@@ -393,8 +398,10 @@ $backtoWatchlist.addEventListener('click', backtoWatchlistHandle);
   Confirm Removal Function-Removes from Watchlist */
 var $openModal = document.querySelector('#remove-button');
 var $cancelButton = document.querySelector('.cancel');
+var $removeButton = document.querySelector('.confirm');
 var $modalOverlay = document.querySelector('.overlay');
 var modal = 'closed';
+
 function modalToggle(event) {
   if (modal === 'closed') {
     $modalOverlay.classList.remove('hidden');
@@ -407,3 +414,19 @@ function modalToggle(event) {
 
 $openModal.addEventListener('click', modalToggle);
 $cancelButton.addEventListener('click', modalToggle);
+
+/* Deleting from the list function/event listener */
+$removeButton.addEventListener('click', function (e) {
+  var $li = document.querySelectorAll('li');
+  for (var i = 0; i < data.watchlist.length; i++) {
+    if (data.edit === data.watchlist[i].id) {
+      data.watchlist.splice(data.watchlist.length - data.edit, 1);
+      $li[i].remove();
+    }
+  }
+  data.edit = null;
+  $modalOverlay.classList.add('hidden');
+  modal = 'closed';
+  data.nextId--;
+  dataView('watchlist');
+});
