@@ -345,7 +345,7 @@ function top100API() {
   xhr3.responseType = 'json';
   xhr3.addEventListener('load', function () {
     for (var i = 0; i <= 100; i++) {
-      var $entries = generateTrendingDOM(xhr3.response.assets[i], i);
+      var $entries = generateTrendingDOM(xhr3.response.assets[i], i + 1);
       $ulTrending.appendChild($entries);
     }
   });
