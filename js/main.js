@@ -6,6 +6,8 @@ var $menuSearch = document.querySelector('.search-header');
 var $searchBar = document.querySelector('.search-nav-row');
 var $watchList = document.querySelector('.watchlist-header');
 var $watchListAnchor = document.querySelector('.watchlist-anchor');
+var $trending = document.querySelector('.trending-header');
+var $trendingAnchor = document.querySelector('.trending-anchor');
 var $noEntriesMsg = document.querySelector('.no-entries');
 var menu = 'closed';
 var bar = 'closed';
@@ -24,8 +26,14 @@ function hamburgerClick(event) {
 function handleSearchBar(event) {
   event.preventDefault();
   var viewName = event.target.textContent;
-
-  if (viewName === 'Watchlist') {
+  if (viewName === 'Trending') {
+    $mainHeader.textContent = 'Trending Top 100';
+    dataView('trending');
+    $dropMenu.classList.add('hidden');
+    $searchBar.classList.add('hidden');
+    menu = 'closed';
+    bar = 'closed';
+  } else if (viewName === 'Watchlist') {
     dataView('watchlist');
     $dropMenu.classList.add('hidden');
     $searchBar.classList.add('hidden');
@@ -45,6 +53,8 @@ $hamburgerIcon.addEventListener('click', hamburgerClick);
 $menuSearch.addEventListener('click', handleSearchBar);
 $watchList.addEventListener('click', handleSearchBar);
 $watchListAnchor.addEventListener('click', handleSearchBar);
+$trending.addEventListener('click', handleSearchBar);
+$trendingAnchor.addEventListener('click', handleSearchBar);
 window.addEventListener('scroll', function (e) {
   $dropMenu.classList.add('hidden');
   menu = 'closed';
@@ -303,46 +313,109 @@ function watchListDomTree(entries) {
   return $li;
 }
 
-/* Dom ContentLoaded Event Listener */
+/* TOP 100API DOM TREE */
+function generateTrendingDOM(trending, i) {
+  /*  <li class="col-fourth margin-sides ">
+        <div class="row wrap margin-top info-box">
+          <div class="row col-full  justify-center">
+            <h2 class="sub-header-crypto">entries.name</h2>
+          </div>
+          <div class="col-full row">
+            <div class="col-half div-headers">
+              <h2 class="row justify-center">Rank</h2>
+              <h2 class="row justify-center">Symbol</h2>
+              <h2 class="row justify-center">Current Price</h2>
+              <h2 class="row justify-center">%Change1H</h2>
+            </div>
+            <div class="col-half div-headers">
+              <h2 class=" row justify-center ">i</h2>
+              <h2 class=" row justify-center">entries.asset_id</h2>
+              <h2 class=" row justify-center">entries.price</h2>
+              <h2 class=" row justify-center">entries.change_1h</h2>
+            </div>
+          </div>
+        </div>
+      </li>
+  */
+  var $li = document.createElement('li');
+  var $divBlueBox = document.createElement('div');
+  var $divHeader = document.createElement('div');
+  var $divContent = document.createElement('div');
+  var $divContentHeader = document.createElement('div');
+  var $divContentData = document.createElement('div');
+  var $h2Header = document.createElement('h2');
 
-var $ulEntries = document.querySelector('#ul-entries');
+  var $h2Rank = document.createElement('h2');
+  var $h2Symbol = document.createElement('h2');
+  var $h2Price = document.createElement('h2');
+  var $h2Change = document.createElement('h2');
+  var $h2DataRank = document.createElement('h2');
+  var $h2DataSymbol = document.createElement('h2');
+  var $h2DataPrice = document.createElement('h2');
+  var $h2DataChange = document.createElement('h2');
 
-function domContentLoadedHandle(event) {
-  for (var index = 0; index < data.watchlist.length; index++) {
-    var $entries = watchListDomTree(data.watchlist[index]);
-    $ulEntries.appendChild($entries);
-  }
+  $li.className = 'col-fourth margin-sides';
+  $divBlueBox.className = 'row wrap margin-top info-box';
+  $divHeader.className = 'row col-full  justify-center';
+  $divContent.className = 'col-full row';
+  $divContentHeader.className = 'col-half div-headers';
+  $divContentData.className = 'col-half div-headers';
+  $h2Header.className = '';
+  $h2Rank.className = 'row justify-center';
+  $h2Symbol.className = 'row justify-center';
+  $h2Price.className = 'row justify-center';
+  $h2Change.className = 'row justify-center';
+  $h2DataRank.className = 'row justify-center';
+  $h2DataSymbol.className = 'row justify-center';
+  $h2DataPrice.className = 'row justify-center';
+  $h2DataChange.className = 'row justify-center';
 
-  if (data.view === 'cryptos') {
-    dataView('global');
-  }
-  dataView(data.view);
-  dataForWatchList();
+  $h2Header.textContent = trending.name;
+  $h2Rank.textContent = 'Rank';
+  $h2Symbol.textContent = 'Symbol';
+  $h2Price.textContent = 'Price';
+  $h2Change.textContent = '%Change 1H';
+
+  $h2DataRank.textContent = i;
+  $h2DataSymbol.textContent = trending.asset_id;
+  $h2DataPrice.textContent = '$' + Math.round(trending.price * 10000) / 10000;
+  $h2DataChange.textContent = Math.round(trending.change_1h * 100000) / 100000 + '%';
+
+  $li.appendChild($divBlueBox);
+  $divBlueBox.appendChild($divHeader);
+  $divBlueBox.appendChild($divContent);
+  $divHeader.appendChild($h2Header);
+  $divContent.appendChild($divContentHeader);
+  $divContent.appendChild($divContentData);
+  $divContentHeader.appendChild($h2Rank);
+  $divContentHeader.appendChild($h2Symbol);
+  $divContentHeader.appendChild($h2Price);
+  $divContentHeader.appendChild($h2Change);
+  $divContentData.appendChild($h2DataRank);
+  $divContentData.appendChild($h2DataSymbol);
+  $divContentData.appendChild($h2DataPrice);
+  $divContentData.appendChild($h2DataChange);
+  return $li;
 }
-
-window.addEventListener('DOMContentLoaded', domContentLoadedHandle);
 
 /* TOP 100 API function */
 
 var apiUrlAll = encodeURIComponent('https://www.cryptingup.com/api/assets');
+var $ulTrending = document.querySelector('#trending');
 
-function top100API(start, end) {
-  if (!end || end < start) {
-    return;
-  }
+function top100API() {
   var xhr3 = new XMLHttpRequest();
   xhr3.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + apiUrlAll);
   xhr3.setRequestHeader('token', 'abc123');
   xhr3.responseType = 'json';
   xhr3.addEventListener('load', function () {
-    for (var i = start; i <= end; i++) {
-      var api = i;
+    for (var i = 0; i <= 100; i++) {
+      var $entries = generateTrendingDOM(xhr3.response.assets[i], i + 1);
+      $ulTrending.appendChild($entries);
     }
-    return api;
   });
   xhr3.send();
 }
-top100API(1, 1);
 
 /* Bubbling Click Event for Watchlist */
 /* Numbers Correspond to the edit list order */
@@ -366,8 +439,12 @@ function handleEdit(event) {
 }
 
 function dataForWatchList() {
-  if (data.view === 'watchlist') {
+  if (data.view === 'trending') {
+    $mainHeader.textContent = 'Trending Top 100';
+  } else if (data.view === 'watchlist') {
     $mainHeader.textContent = 'My WatchList';
+  } else if (data.view === 'global') {
+    $mainHeader.textContent = 'Global';
   } else {
     $mainHeader.textContent = 'Asset Overview';
   }
@@ -383,8 +460,6 @@ function dataForWatchList() {
     }
   }
 }
-
-$ulEntries.addEventListener('click', handleEdit);
 
 /* Back to Watchlist handleClick */
 var $backtoWatchlist = document.querySelector('#back-to-list');
@@ -424,9 +499,30 @@ $removeButton.addEventListener('click', function (e) {
       $li[i].remove();
     }
   }
+  data.nextId--;
   data.edit = null;
   $modalOverlay.classList.add('hidden');
   modal = 'closed';
-  data.nextId--;
   dataView('watchlist');
 });
+
+/* Dom ContentLoaded Event Listener */
+
+var $ulEntries = document.querySelector('#ul-entries');
+
+function domContentLoadedHandle(event) {
+  for (var index = 0; index < data.watchlist.length; index++) {
+    var $entries = watchListDomTree(data.watchlist[index]);
+    $ulEntries.appendChild($entries);
+  }
+  dataForWatchList();
+  top100API();
+
+  if (data.view === 'cryptos') {
+    dataView('global');
+  }
+  dataView(data.view);
+}
+
+$ulEntries.addEventListener('click', handleEdit);
+window.addEventListener('DOMContentLoaded', domContentLoadedHandle);

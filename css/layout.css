@@ -18,7 +18,8 @@
 
 .col-full,
 .col-half,
-.col-third {
+.col-third,
+.col-fourth {
   width: 100%;
 }
 
@@ -31,24 +32,16 @@
 }
 
 @media screen and (max-width: 575px) {
-  .hide-search-box {
-    display: none;
-  }
-
-  .watchlist-anchor {
+  .hide-search-box,
+  .watchlist-anchor,
+  .trending-anchor {
     display: none;
   }
 }
 
 @media screen and (min-width: 576px) {
-  .hamburger-icon {
-    display: none;
-  }
-
-  .choice-list {
-    display: none;
-  }
-
+  .hamburger-icon,
+  .choice-list,
   .search-nav-row {
     display: none;
   }
@@ -71,6 +64,10 @@
 
   .col-third {
     width: calc(100% / 3);
+  }
+
+  .col-fourth {
+    width: 24.4%;
   }
 
   .div-headers > h2 {

@@ -79,18 +79,19 @@ input {
   font-size: 2.5rem;
 }
 
-.search-header {
-  color: white;
-  font-size: 2rem;
-}
-
-.watchlist-header {
+.search-header,
+.watchlist-header,
+.trending-header {
   color: white;
   font-size: 2rem;
 }
 
 .watchlist-row {
   top: 140px;
+}
+
+.trending-row {
+  top: 180px;
 }
 
 .search-header:hover,
@@ -161,7 +162,8 @@ button:hover,
   box-shadow: 0 0 5px 5px rgb(22, 159, 254);
 }
 
-.watchlist-anchor {
+.watchlist-anchor,
+.trending-anchor {
   color: white;
   font-size: large;
 }
@@ -194,4 +196,12 @@ button:hover,
 
 .align-end {
   align-items: flex-end;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.margin-sides {
+  margin: 0 0.2rem;
 }

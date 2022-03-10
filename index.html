@@ -25,6 +25,7 @@
         <div class="row col-half align-center">
           <h2 id="home-button">CryptoDex</h2>
           <a class="row justify-center watchlist-anchor align-center col-half" href="">Watchlist</a>
+          <a class="row  trending-anchor align-center col-half" href="">Trending</a>
         </div>
         <div class="col-half align-center hamburger-icon">
           <img class="hamburger-icon " src="images/hamburger.png" alt="h-icon">
@@ -54,6 +55,11 @@
       <div class="row bgc-lblue-transparent fixed-position col-full choice-list watchlist-row">
         <div class="col-full">
           <a class="watchlist-header" href="" data-view="watchlist">Watchlist</a>
+        </div>
+      </div>
+      <div class="row bgc-lblue-transparent fixed-position col-full choice-list trending-row">
+        <div class="col-full">
+          <a class="trending-header" href="" data-view="watchlist">Trending</a>
         </div>
       </div>
     </div>
@@ -145,6 +151,7 @@
       </div>
     </div>
     <ul class="view row wrap hidden" data-view="watchlist" id="ul-entries"></ul>
+    <ul class="view row wrap" data-view="trending" id="trending"></ul>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
