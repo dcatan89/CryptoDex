@@ -69,6 +69,10 @@ input {
   padding: 10px 25px;
 }
 
+.search-button:hover {
+  background-color: rgb(18, 60, 94);
+}
+
 .main-header {
   font-size: 3rem;
   margin-top: 0;
@@ -84,6 +88,12 @@ input {
 .trending-header {
   color: white;
   font-size: 2rem;
+}
+
+.search-header:hover,
+.watchlist-header:hover,
+.trending-header:hover {
+  color: rgb(174, 174, 244);
 }
 
 .watchlist-row {
@@ -102,8 +112,11 @@ button:hover,
 
 .info-box {
   background-color: rgb(22, 159, 254, 0.7);
-  border: solid rgb(165, 163, 163);
+  border: outset rgb(165, 163, 163);
   border-radius: 6px;
+  box-shadow:
+    0 0 5px 5px rgb(0, 0, 0),
+    0 0 10px 10px rgb(67, 117, 187);
 }
 
 .watchlist-button {
@@ -141,10 +154,14 @@ button:hover,
   padding: 10px 20px;
   margin: 20px auto;
   color: white;
-  background-color: rgb(194, 63, 98);
+  background-color: rgb(194, 65, 99);
   border-radius: 6px;
   border: solid white;
-  box-shadow: 0 0 5px 5px rgb(235, 75, 17);
+  box-shadow: 0 0 5px 5px rgb(176, 34, 34);
+}
+
+.confirm:hover {
+  background-color: rgb(121, 33, 57);
 }
 
 .checked {
@@ -166,6 +183,12 @@ button:hover,
 .trending-anchor {
   color: white;
   font-size: large;
+}
+
+.anchor-hover:hover {
+  color: rgb(5, 17, 34);
+  font-size: larger;
+  border-bottom: solid black;
 }
 
 .position-relative {
@@ -204,4 +227,15 @@ button:hover,
 
 .margin-sides {
   margin: 0 0.2rem;
+}
+
+.watchlist-button:hover,
+.view-button:hover,
+.edit-button:hover,
+.cancel:hover {
+  background-color: rgb(30, 80, 152);
+}
+
+.time-stamp {
+  font-size: 0.8rem;
 }

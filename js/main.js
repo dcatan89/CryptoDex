@@ -58,7 +58,6 @@ $trendingAnchor.addEventListener('click', handleSearchBar);
 window.addEventListener('scroll', function (e) {
   $dropMenu.classList.add('hidden');
   menu = 'closed';
-  bar = 'closed';
 });
 
 /* Home Button */
@@ -67,6 +66,7 @@ var homeButton = document.querySelector('#home-button');
 homeButton.addEventListener('click', function (e) {
   dataView('global');
   $mainHeader.textContent = 'Global';
+  $dropMenu.classList.add('hidden');
 });
 
 /* API Requests and Functions GLOBAL PAGE */
@@ -272,7 +272,7 @@ function watchListDomTree(entries) {
   $button.className = 'view-button';
   $button.setAttribute('data-id', entries.id);
   $button.setAttribute('data-view', 'edit-list');
-  $divtimeStamp.className = 'col-full row justify-center';
+  $divtimeStamp.className = 'col-full row justify-center time-stamp';
 
   $h2SubHead.textContent = entries.name;
   $MrktChangeh2.textContent = 'Market Change';
