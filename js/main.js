@@ -12,6 +12,19 @@ var $noEntriesMsg = document.querySelector('.no-entries');
 var menu = 'closed';
 var bar = 'closed';
 
+function viewBox(anchor) {
+  if (anchor === 'Watchlist') {
+    $watchListAnchor.classList.add('white-bg-box');
+    $trendingAnchor.classList.remove('white-bg-box');
+  } else if (anchor === 'Trending') {
+    $trendingAnchor.classList.add('white-bg-box');
+    $watchListAnchor.classList.remove('white-bg-box');
+  } else {
+    $watchListAnchor.classList.remove('white-bg-box');
+    $trendingAnchor.classList.remove('white-bg-box');
+  }
+}
+
 function hamburgerClick(event) {
   if (menu === 'closed') {
     $dropMenu.classList.remove('hidden');
@@ -29,6 +42,7 @@ function handleSearchBar(event) {
   if (viewName === 'Trending') {
     $mainHeader.textContent = 'Trending Top 100';
     dataView('trending');
+    viewBox(viewName);
     $dropMenu.classList.add('hidden');
     $searchBar.classList.add('hidden');
     menu = 'closed';
@@ -37,6 +51,7 @@ function handleSearchBar(event) {
     $navBar.classList.remove('fixed-position');
   } else if (viewName === 'Watchlist') {
     dataView('watchlist');
+    viewBox(viewName);
     $dropMenu.classList.add('hidden');
     $searchBar.classList.add('hidden');
     $searchBar.classList.remove('fixed-postion');
@@ -75,12 +90,14 @@ window.addEventListener('scroll', function (e) {
 var homeButton = document.querySelector('#home-button');
 
 homeButton.addEventListener('click', function (e) {
+  var viewName = event.target.textContent;
   dataView('global');
   $mainHeader.textContent = 'Global';
   $dropMenu.classList.add('hidden');
   window.scroll({ top: 0, left: 0, behavior: 'smooth' });
   $searchBar.classList.remove('fixed-postion');
   $navBar.classList.remove('fixed-position');
+  viewBox(viewName);
 });
 
 /* API Requests and Functions GLOBAL PAGE */
