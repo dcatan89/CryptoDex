@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AJAX Project</title>
   <link rel="icon" href="images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
@@ -21,11 +22,15 @@
   </div>
   <header>
     <form id="form-search">
-      <div class="row bgc-lblue nav-bar">
-        <div class="row col-half align-center">
-          <h2 id="home-button">CryptoDex</h2>
-          <a class="row justify-center watchlist-anchor align-center col-half" href=""><span class="anchor-hover">Watchlist</span></a>
-          <a class="row  trending-anchor align-center col-half" href=""><span class="anchor-hover">Trending</span></a>
+      <div class="row bgc-lblack nav-bar">
+        <div class="row space-between col-half align-center">
+          <h2 class="col-third" id="home-button">CryptoDex</h2>
+          <div class="row col-col-third">
+            <a class="row justify-center watchlist-anchor align-center col-half" href=""><span class="anchor-hover">Watchlist</span></a>
+          </div>
+          <div class=" row col-third">
+            <a class="row  trending-anchor align-center col-half" href=""><span class="anchor-hover">Trending</span></a>
+          </div>
         </div>
         <div class="col-half align-center hamburger-icon">
           <img class="hamburger-icon " src="images/hamburger.png" alt="h-icon">
@@ -38,7 +43,7 @@
       </div>
     </form>
     <form id="form-search2">
-      <div class="row bgc-lblue nav-bar search-nav-row hidden">
+      <div class="row bgc-lblack-transparent nav-bar search-nav-row hidden">
         <div class="col-full  align-center row justify-center">
           <label for="searchbar2"></label>
           <input placeholder="Search Using Symbol" class="search-bar2" required name="searchbar2" type="text" id="search-bar2">
@@ -48,19 +53,15 @@
     </form>
   </header>
   <main>
-    <div class="row bgc-lblue-transparent fixed-position col-full choice-list hidden">
-      <div class="col-full">
+    <div class="row bgc-lblack-transparent fixed-position col-full choice-list hidden">
+      <div class="col-full border-bottom-white">
         <a class="search-header" href="">Search</a>
       </div>
-      <div class="row bgc-lblue-transparent fixed-position col-full choice-list watchlist-row">
-        <div class="col-full">
-          <a class="watchlist-header" href="" data-view="watchlist">Watchlist</a>
-        </div>
+      <div class="col-full border-bottom-white">
+        <a class="watchlist-header" href="" data-view="watchlist">Watchlist</a>
       </div>
-      <div class="row bgc-lblue-transparent fixed-position col-full choice-list trending-row">
-        <div class="col-full">
-          <a class="trending-header" href="" data-view="watchlist">Trending</a>
-        </div>
+      <div class="col-full">
+        <a class="trending-header" href="" data-view="watchlist">Trending</a>
       </div>
     </div>
     <div class="row ">

@@ -47,6 +47,11 @@ function handleSearchBar(event) {
     $searchBar.classList.add('hidden');
     bar = 'closed';
   }
+  if (window.scrollY !== 0) {
+    window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+    $searchBar.classList.remove('fixed-postion');
+    $navBar.classList.remove('fixed-position');
+  }
 }
 
 $hamburgerIcon.addEventListener('click', hamburgerClick);
@@ -371,6 +376,9 @@ function generateTrendingDOM(trending, i) {
   $h2DataChange.className = 'row justify-center';
 
   $h2Header.textContent = trending.name;
+  if (!trending.name) {
+    $h2Header.textContent = trending.asset_id;
+  }
   $h2Rank.textContent = 'Rank';
   $h2Symbol.textContent = 'Symbol';
   $h2Price.textContent = 'Price';
@@ -526,3 +534,18 @@ function domContentLoadedHandle(event) {
 
 $ulEntries.addEventListener('click', handleEdit);
 window.addEventListener('DOMContentLoaded', domContentLoadedHandle);
+
+/* Scrool Event to keep nav bar fixed */
+var $navBar = document.querySelector('.nav-bar');
+window.addEventListener('wheel', function (e) {
+  if (e.deltaY < 0) {
+    $searchBar.classList.add('fixed-postion');
+    $navBar.classList.add('fixed-position');
+  }
+
+  if (window.scrollY === 0) {
+    $searchBar.classList.remove('fixed-postion');
+    $navBar.classList.remove('fixed-position');
+  }
+
+});

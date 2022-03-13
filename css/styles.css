@@ -1,13 +1,17 @@
-.bgc-lblue {
-  background-color: rgb(22, 159, 254);
+.bgc-lblack {
+  background-color: rgb(33, 35, 40, 0.7);
 }
 
-.bgc-lblue-transparent {
-  background-color: rgb(22, 159, 254, 0.5);
+.bgc-lblack-transparent {
+  background-color: rgb(33, 35, 40, 0.5);
 }
 
 .bgc-dblue {
   background-color: rgb(5, 17, 34);
+}
+
+.space-between {
+  justify-content: space-between;
 }
 
 .justify-right {
@@ -33,6 +37,10 @@
   justify-content: center;
 }
 
+.border-bottom-white {
+  border-bottom: solid rgba(255, 255, 255, 0.982);
+}
+
 .hamburger-icon {
   width: 50px;
 }
@@ -52,6 +60,7 @@
 .choice-list {
   border-top: solid white;
   border-bottom: solid white;
+  flex-direction: column;
 }
 
 input {
@@ -63,7 +72,7 @@ input {
 
 .search-button {
   color: white;
-  background-color: rgb(22, 159, 254);
+  background-color: rgb(33, 35, 40, 0.7);
   border: solid white;
   border-radius: 5px;
   padding: 10px 25px;
@@ -88,6 +97,7 @@ input {
 .trending-header {
   color: white;
   font-size: 2rem;
+  padding-left: 0.25rem;
 }
 
 .search-header:hover,
@@ -111,12 +121,9 @@ button:hover,
 }
 
 .info-box {
-  background-color: rgb(22, 159, 254, 0.7);
-  border: outset rgb(165, 163, 163);
-  border-radius: 6px;
-  box-shadow:
-    0 0 5px 5px rgb(0, 0, 0),
-    0 0 10px 10px rgb(67, 117, 187);
+  background-color: rgba(33, 35, 40, 0.7);
+  border: solid rgba(255, 255, 255, 0.982);
+  border-radius: 10px;
 }
 
 .watchlist-button {
@@ -126,7 +133,6 @@ button:hover,
   background-color: rgb(5, 17, 34);
   border-radius: 6px;
   border: solid white;
-  box-shadow: 0 0 5px 5px rgb(22, 159, 254);
 }
 
 .added-button {
@@ -136,7 +142,6 @@ button:hover,
   background-color: rgb(5, 17, 34);
   border-radius: 6px;
   border: solid white;
-  box-shadow: 0 0 5px 5px rgb(22, 159, 254);
 }
 
 .view-button,
@@ -147,7 +152,6 @@ button:hover,
   background-color: rgb(5, 17, 34);
   border-radius: 6px;
   border: solid white;
-  box-shadow: 0 0 5px 5px rgb(22, 159, 254);
 }
 
 .confirm {
@@ -165,8 +169,7 @@ button:hover,
 }
 
 .checked {
-  color: chartreuse;
-  box-shadow: 0 0 1px 1px;
+  color: rgb(31, 231, 132);
 }
 
 .edit-button {
@@ -176,7 +179,6 @@ button:hover,
   border-radius: 5px;
   padding: 10px 25px;
   margin-bottom: 10%;
-  box-shadow: 0 0 5px 5px rgb(22, 159, 254);
 }
 
 .watchlist-anchor,
@@ -186,9 +188,9 @@ button:hover,
 }
 
 .anchor-hover:hover {
-  color: rgb(5, 17, 34);
+  color: rgba(255, 255, 255, 0.982);
   font-size: larger;
-  border-bottom: solid black;
+  border-bottom: solid rgba(255, 255, 255, 0.982);
 }
 
 .position-relative {
@@ -238,4 +240,8 @@ button:hover,
 
 .time-stamp {
   font-size: 0.8rem;
+}
+
+.transparent-white-bgc {
+  background-color: rgba(255, 255, 255, 0.434);
 }
