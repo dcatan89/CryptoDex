@@ -42,7 +42,7 @@
 }
 
 .hamburger-icon {
-  width: 50px;
+  width: 35px;
 }
 
 .hamburger-icon:hover {
@@ -61,6 +61,18 @@
   border-top: solid white;
   border-bottom: solid white;
   flex-direction: column;
+  animation-duration: 0.25s;
+  animation-name: slidein;
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+  }
+
+  to {
+    margin-left: 0%;
+  }
 }
 
 input {
@@ -244,4 +256,5 @@ button:hover,
 
 .transparent-white-bgc {
   background-color: rgba(255, 255, 255, 0.434);
+}
 }

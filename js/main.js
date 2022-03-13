@@ -33,10 +33,14 @@ function handleSearchBar(event) {
     $searchBar.classList.add('hidden');
     menu = 'closed';
     bar = 'closed';
+    $searchBar.classList.remove('fixed-postion');
+    $navBar.classList.remove('fixed-position');
   } else if (viewName === 'Watchlist') {
     dataView('watchlist');
     $dropMenu.classList.add('hidden');
     $searchBar.classList.add('hidden');
+    $searchBar.classList.remove('fixed-postion');
+    $navBar.classList.remove('fixed-position');
     menu = 'closed';
     bar = 'closed';
   } else if (bar === 'closed' || event.target.textContent === $menuSearch.textContent) {
@@ -44,6 +48,8 @@ function handleSearchBar(event) {
     $dropMenu.classList.add('hidden');
     bar = 'open';
   } else {
+    $searchBar.classList.remove('fixed-postion');
+    $navBar.classList.remove('fixed-position');
     $searchBar.classList.add('hidden');
     bar = 'closed';
   }
@@ -72,6 +78,9 @@ homeButton.addEventListener('click', function (e) {
   dataView('global');
   $mainHeader.textContent = 'Global';
   $dropMenu.classList.add('hidden');
+  window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+  $searchBar.classList.remove('fixed-postion');
+  $navBar.classList.remove('fixed-position');
 });
 
 /* API Requests and Functions GLOBAL PAGE */
