@@ -401,10 +401,12 @@ function generateTrendingDOM(trending, i) {
   $h2DataPrice.className = 'row justify-center';
   $h2DataChange.className = 'row justify-center';
 
-  $h2Header.textContent = trending.name;
-  if (!trending.name) {
+  if (trending.name) {
+    $h2Header.textContent = trending.name;
+  } else {
     $h2Header.textContent = trending.asset_id;
   }
+
   $h2Rank.textContent = 'Rank';
   $h2Symbol.textContent = 'Symbol';
   $h2Price.textContent = 'Price';
@@ -434,17 +436,17 @@ function generateTrendingDOM(trending, i) {
 
 /* TOP 100 API function */
 
-var apiUrlAll = encodeURIComponent('https://www.cryptingup.com/api/assets');
-var $ulTrending = document.querySelector('#trending');
+const apiUrlAll = encodeURIComponent('https://www.cryptingup.com/api/assets');
+const $ulTrending = document.querySelector('#trending');
 
 function top100API() {
-  var xhr3 = new XMLHttpRequest();
+  const xhr3 = new XMLHttpRequest();
   xhr3.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + apiUrlAll);
   xhr3.setRequestHeader('token', 'abc123');
   xhr3.responseType = 'json';
   xhr3.addEventListener('load', function () {
-    for (var i = 0; i <= 100; i++) {
-      var $entries = generateTrendingDOM(xhr3.response.assets[i], i + 1);
+    for (let i = 0; i <= 100; i++) {
+      const $entries = generateTrendingDOM(xhr3.response.assets[i], i + 1);
       $ulTrending.appendChild($entries);
     }
   });
