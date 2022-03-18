@@ -11,6 +11,10 @@
   width: 100vw;
 }
 
+.font-sm {
+  font-size: 1rem;
+}
+
 .row {
   display: flex;
 }
@@ -73,6 +77,11 @@
 
   .col-half {
     width: 50%;
+  }
+
+  .font-sm,
+  .global-data {
+    font-size: 1.5rem;
   }
 
   .col-third {
