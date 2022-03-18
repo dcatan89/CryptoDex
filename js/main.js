@@ -1,16 +1,16 @@
 
 /* Hamburger Icon click and Dropdown Menu */
-var $hamburgerIcon = document.querySelector('.hamburger-icon');
-var $dropMenu = document.querySelector('.choice-list');
-var $menuSearch = document.querySelector('.search-header');
-var $searchBar = document.querySelector('.search-nav-row');
-var $watchList = document.querySelector('.watchlist-header');
-var $watchListAnchor = document.querySelector('.watchlist-anchor');
-var $trending = document.querySelector('.trending-header');
-var $trendingAnchor = document.querySelector('.trending-anchor');
-var $noEntriesMsg = document.querySelector('.no-entries');
-var menu = 'closed';
-var bar = 'closed';
+const $hamburgerIcon = document.querySelector('.hamburger-icon');
+const $dropMenu = document.querySelector('.choice-list');
+const $menuSearch = document.querySelector('.search-header');
+const $searchBar = document.querySelector('.search-nav-row');
+const $watchList = document.querySelector('.watchlist-header');
+const $watchListAnchor = document.querySelector('.watchlist-anchor');
+const $trending = document.querySelector('.trending-header');
+const $trendingAnchor = document.querySelector('.trending-anchor');
+const $noEntriesMsg = document.querySelector('.no-entries');
+let menu = 'closed';
+let bar = 'closed';
 
 function viewBox(anchor) {
   if (anchor === 'Watchlist') {
@@ -38,7 +38,7 @@ function hamburgerClick(event) {
 
 function handleSearchBar(event) {
   event.preventDefault();
-  var viewName = event.target.textContent;
+  const viewName = event.target.textContent;
   if (viewName === 'Trending') {
     $mainHeader.textContent = 'Trending Top 100';
     dataView('trending');
@@ -87,10 +87,10 @@ window.addEventListener('scroll', function (e) {
 });
 
 /* Home Button */
-var homeButton = document.querySelector('#home-button');
+const homeButton = document.querySelector('#home-button');
 
-homeButton.addEventListener('click', function (e) {
-  var viewName = event.target.textContent;
+homeButton.addEventListener('click', e => {
+  const viewName = event.target.textContent;
   dataView('global');
   $mainHeader.textContent = 'Global';
   $dropMenu.classList.add('hidden');
@@ -101,19 +101,19 @@ homeButton.addEventListener('click', function (e) {
 });
 
 /* API Requests and Functions GLOBAL PAGE */
-var $marketCap = document.querySelector('.for-header1');
-var $volume24H = document.querySelector('.for-header2');
-var $marketChange = document.querySelector('.for-header3');
-var $cryptosNumber = document.querySelector('.for-header4');
+const $marketCap = document.querySelector('.for-header1');
+const $volume24H = document.querySelector('.for-header2');
+const $marketChange = document.querySelector('.for-header3');
+const $cryptosNumber = document.querySelector('.for-header4');
 
-var targetUrl = encodeURIComponent('https://api.coinpaprika.com/v1/global');
-var apiUrl = encodeURIComponent('https://www.cryptingup.com/api/assets/');
+const targetUrl = encodeURIComponent('https://api.coinpaprika.com/v1/global');
+const apiUrl = encodeURIComponent('https://www.cryptingup.com/api/assets/');
 
-var xhr = new XMLHttpRequest();
+const xhr = new XMLHttpRequest();
 xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
 xhr.setRequestHeader('token', 'abc123');
 xhr.responseType = 'json';
-xhr.addEventListener('load', function () {
+xhr.addEventListener('load', () => {
   $marketCap.textContent = '$ ' + xhr.response.market_cap_usd.toLocaleString('en-US');
   $volume24H.textContent = '$ ' + xhr.response.volume_24h_usd.toLocaleString('en-US');
   $marketChange.textContent = xhr.response.market_cap_change_24h + '%';
@@ -122,25 +122,25 @@ xhr.addEventListener('load', function () {
 xhr.send();
 
 /* API Search Function and Data */
-var $formSearch = document.querySelector('#form-search');
-var $formSearch2 = document.querySelector('#form-search2');
-var $percentChange = document.querySelector('.for-rank');
-var $Symbol = document.querySelector('.for-symbol');
-var $CurrentPrice = document.querySelector('.for-price');
-var $Cap = document.querySelector('.for-cap');
-var $volume = document.querySelector('.for-volume');
-var $subHeader = document.querySelector('.sub-header-crypto');
-var $mainHeader = document.querySelector('.main-header');
+const $formSearch = document.querySelector('#form-search');
+const $formSearch2 = document.querySelector('#form-search2');
+const $percentChange = document.querySelector('.for-rank');
+const $Symbol = document.querySelector('.for-symbol');
+const $CurrentPrice = document.querySelector('.for-price');
+const $Cap = document.querySelector('.for-cap');
+const $volume = document.querySelector('.for-volume');
+const $subHeader = document.querySelector('.sub-header-crypto');
+const $mainHeader = document.querySelector('.main-header');
 
 function searchID(id) {
-  var value = id.toUpperCase();
-  var xhr2 = new XMLHttpRequest();
+  const value = id.toUpperCase();
+  const xhr2 = new XMLHttpRequest();
   xhr2.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + apiUrl + value);
   xhr2.setRequestHeader('token', 'abc123');
   xhr2.responseType = 'json';
-  xhr2.addEventListener('load', function () {
+  xhr2.addEventListener('load', () => {
 
-    var crypto = xhr2.response.asset;
+    const crypto = xhr2.response.asset;
 
     $subHeader.textContent = crypto.name;
     $mainHeader.textContent = 'Assets: ' + crypto.asset_id;
@@ -159,7 +159,7 @@ function searchID(id) {
 
 function handleSubmit1(event) {
   event.preventDefault();
-  var searchBar1Value = $formSearch.elements.searchbar.value;
+  const searchBar1Value = $formSearch.elements.searchbar.value;
   searchID(searchBar1Value);
   dataView('cryptos');
   data.added = false;
@@ -168,7 +168,7 @@ function handleSubmit1(event) {
 
 function handleSubmit2(event) {
   event.preventDefault();
-  var searchBar2Value = $formSearch2.elements.searchbar2.value;
+  const searchBar2Value = $formSearch2.elements.searchbar2.value;
   searchID(searchBar2Value);
   $dropMenu.classList.add('hidden');
   dataView('cryptos');
@@ -180,7 +180,7 @@ $formSearch.addEventListener('submit', handleSubmit1);
 $formSearch2.addEventListener('submit', handleSubmit2);
 
 /* Data View function */
-var $view = document.querySelectorAll('.view');
+const $view = document.querySelectorAll('.view');
 
 function dataView(string) {
   data.view = string;
@@ -188,7 +188,7 @@ function dataView(string) {
   if (data.view === 'watchlist') {
     $mainHeader.textContent = 'My WatchList';
   }
-  for (var i = 0; i < $view.length; i++) {
+  for (let i = 0; i < $view.length; i++) {
     if ($view[i].getAttribute('data-view') === string) {
       $view[i].classList.remove('hidden');
     } else {
@@ -201,16 +201,16 @@ function dataView(string) {
 }
 
 /* Add to WatchList Event Listeners/functions */
-var timeStamp = new Date();
-var $watchListButton = document.querySelector('.watchlist-button');
+const timeStamp = new Date();
+const $watchListButton = document.querySelector('.watchlist-button');
 
-function handleWatchList(event) {
+$watchListButton.addEventListener('click', e => {
 
   if (data.added === true) {
     return;
   }
 
-  var entryValues = {
+  const entryValues = {
     id: data.nextId,
     added: true,
     name: $subHeader.textContent,
@@ -221,13 +221,12 @@ function handleWatchList(event) {
     volume24h: $volume.textContent,
     timeStamp: timeStamp
   };
+
   data.watchlist.unshift(entryValues);
   data.nextId++;
   $ulEntries.prepend(watchListDomTree(entryValues));
   dataView('watchlist');
-}
-
-$watchListButton.addEventListener('click', handleWatchList);
+});
 
 /* DOM TREE CREATION */
 function watchListDomTree(entries) {
@@ -259,26 +258,26 @@ function watchListDomTree(entries) {
         </div>
       </li>
   */
-  var $li = document.createElement('li');
-  var $divSubHead = document.createElement('div');
-  var $divH2SubHead = document.createElement('div');
-  var $h2SubHead = document.createElement('h2');
-  var $divforContent = document.createElement('div');
-  var $div4ContentHeaders = document.createElement('div');
-  var $div4ContentData = document.createElement('div');
-  var $MrktChangeh2 = document.createElement('h2');
-  var $symbolh2 = document.createElement('h2');
-  var $priceh2 = document.createElement('h2');
-  var $caph2 = document.createElement('h2');
-  var $volumeh2 = document.createElement('h2');
-  var $dataMrkth2 = document.createElement('h2');
-  var $dataSymbolh2 = document.createElement('h2');
-  var $dataPriceh2 = document.createElement('h2');
-  var $datacaph2 = document.createElement('h2');
-  var $datavolumeh2 = document.createElement('h2');
-  var $divButton = document.createElement('div');
-  var $button = document.createElement('button');
-  var $divtimeStamp = document.createElement('div');
+  const $li = document.createElement('li');
+  const $divSubHead = document.createElement('div');
+  const $divH2SubHead = document.createElement('div');
+  const $h2SubHead = document.createElement('h2');
+  const $divforContent = document.createElement('div');
+  const $div4ContentHeaders = document.createElement('div');
+  const $div4ContentData = document.createElement('div');
+  const $MrktChangeh2 = document.createElement('h2');
+  const $symbolh2 = document.createElement('h2');
+  const $priceh2 = document.createElement('h2');
+  const $caph2 = document.createElement('h2');
+  const $volumeh2 = document.createElement('h2');
+  const $dataMrkth2 = document.createElement('h2');
+  const $dataSymbolh2 = document.createElement('h2');
+  const $dataPriceh2 = document.createElement('h2');
+  const $datacaph2 = document.createElement('h2');
+  const $datavolumeh2 = document.createElement('h2');
+  const $divButton = document.createElement('div');
+  const $button = document.createElement('button');
+  const $divtimeStamp = document.createElement('div');
 
   $li.className = 'col-third';
   $li.setAttribute('data-id', entries.id);
@@ -368,22 +367,22 @@ function generateTrendingDOM(trending, i) {
         </div>
       </li>
   */
-  var $li = document.createElement('li');
-  var $divBlueBox = document.createElement('div');
-  var $divHeader = document.createElement('div');
-  var $divContent = document.createElement('div');
-  var $divContentHeader = document.createElement('div');
-  var $divContentData = document.createElement('div');
-  var $h2Header = document.createElement('h2');
+  const $li = document.createElement('li');
+  const $divBlueBox = document.createElement('div');
+  const $divHeader = document.createElement('div');
+  const $divContent = document.createElement('div');
+  const $divContentHeader = document.createElement('div');
+  const $divContentData = document.createElement('div');
+  const $h2Header = document.createElement('h2');
 
-  var $h2Rank = document.createElement('h2');
-  var $h2Symbol = document.createElement('h2');
-  var $h2Price = document.createElement('h2');
-  var $h2Change = document.createElement('h2');
-  var $h2DataRank = document.createElement('h2');
-  var $h2DataSymbol = document.createElement('h2');
-  var $h2DataPrice = document.createElement('h2');
-  var $h2DataChange = document.createElement('h2');
+  const $h2Rank = document.createElement('h2');
+  const $h2Symbol = document.createElement('h2');
+  const $h2Price = document.createElement('h2');
+  const $h2Change = document.createElement('h2');
+  const $h2DataRank = document.createElement('h2');
+  const $h2DataSymbol = document.createElement('h2');
+  const $h2DataPrice = document.createElement('h2');
+  const $h2DataChange = document.createElement('h2');
 
   $li.className = 'col-fourth margin-sides';
   $divBlueBox.className = 'row wrap margin-top info-box';
@@ -434,34 +433,34 @@ function generateTrendingDOM(trending, i) {
   return $li;
 }
 
-/* TOP 100 API function */
+/* TOP 100 API */
 
 const apiUrlAll = encodeURIComponent('https://www.cryptingup.com/api/assets');
 const $ulTrending = document.querySelector('#trending');
 
-function top100API() {
-  const xhr3 = new XMLHttpRequest();
-  xhr3.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + apiUrlAll);
-  xhr3.setRequestHeader('token', 'abc123');
-  xhr3.responseType = 'json';
-  xhr3.addEventListener('load', function () {
-    for (let i = 0; i <= 100; i++) {
-      const $entries = generateTrendingDOM(xhr3.response.assets[i], i + 1);
-      $ulTrending.appendChild($entries);
-    }
-  });
-  xhr3.send();
-}
+const xhr3 = new XMLHttpRequest();
+xhr3.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + apiUrlAll);
+xhr3.setRequestHeader('token', 'abc123');
+xhr3.responseType = 'json';
+xhr3.addEventListener('load', () => {
+  let i;
+  const endpoint = 99;
+  for (i = 0; i <= endpoint; i++) {
+    const $entries = generateTrendingDOM(xhr3.response.assets[i], i + 1);
+    $ulTrending.appendChild($entries);
+  }
+});
+xhr3.send();
 
 /* Bubbling Click Event for Watchlist */
 /* Numbers Correspond to the edit list order */
-var $timeStamp = document.querySelector('.tstamp');
-var $subHead = document.querySelector('.edit-subhead');
-var $edit1 = document.querySelector('.edit1');
-var $edit2 = document.querySelector('.edit2');
-var $edit3 = document.querySelector('.edit3');
-var $edit4 = document.querySelector('.edit4');
-var $edit5 = document.querySelector('.edit5');
+const $timeStamp = document.querySelector('.tstamp');
+const $subHead = document.querySelector('.edit-subhead');
+const $edit1 = document.querySelector('.edit1');
+const $edit2 = document.querySelector('.edit2');
+const $edit3 = document.querySelector('.edit3');
+const $edit4 = document.querySelector('.edit4');
+const $edit5 = document.querySelector('.edit5');
 
 function handleEdit(event) {
   var viewName = event.target.getAttribute('data-view');
@@ -498,20 +497,20 @@ function dataForWatchList() {
 }
 
 /* Back to Watchlist handleClick */
-var $backtoWatchlist = document.querySelector('#back-to-list');
-function backtoWatchlistHandle(event) {
+const $backtoWatchlist = document.querySelector('#back-to-list');
+
+$backtoWatchlist.addEventListener('click', e => {
   dataView('watchlist');
   data.edit = null;
-}
-$backtoWatchlist.addEventListener('click', backtoWatchlistHandle);
+});
 
 /* Open and Close Modal
   Confirm Removal Function-Removes from Watchlist */
-var $openModal = document.querySelector('#remove-button');
-var $cancelButton = document.querySelector('.cancel');
-var $removeButton = document.querySelector('.confirm');
-var $modalOverlay = document.querySelector('.overlay');
-var modal = 'closed';
+const $openModal = document.querySelector('#remove-button');
+const $cancelButton = document.querySelector('.cancel');
+const $removeButton = document.querySelector('.confirm');
+const $modalOverlay = document.querySelector('.overlay');
+let modal = 'closed';
 
 function modalToggle(event) {
   if (modal === 'closed') {
@@ -527,9 +526,9 @@ $openModal.addEventListener('click', modalToggle);
 $cancelButton.addEventListener('click', modalToggle);
 
 /* Deleting from the list function/event listener */
-$removeButton.addEventListener('click', function (e) {
-  var $li = document.querySelectorAll('li');
-  for (var i = 0; i < data.watchlist.length; i++) {
+$removeButton.addEventListener('click', e => {
+  const $li = document.querySelectorAll('li');
+  for (let i = 0; i < data.watchlist.length; i++) {
     if (data.edit === data.watchlist[i].id) {
       data.watchlist.splice(data.watchlist.length - data.edit, 1);
       $li[i].remove();
@@ -544,15 +543,14 @@ $removeButton.addEventListener('click', function (e) {
 
 /* Dom ContentLoaded Event Listener */
 
-var $ulEntries = document.querySelector('#ul-entries');
+const $ulEntries = document.querySelector('#ul-entries');
 
 function domContentLoadedHandle(event) {
-  for (var index = 0; index < data.watchlist.length; index++) {
-    var $entries = watchListDomTree(data.watchlist[index]);
+  for (let index = 0; index < data.watchlist.length; index++) {
+    const $entries = watchListDomTree(data.watchlist[index]);
     $ulEntries.appendChild($entries);
   }
   dataForWatchList();
-  top100API();
 
   if (data.view === 'cryptos') {
     dataView('global');
@@ -564,8 +562,8 @@ $ulEntries.addEventListener('click', handleEdit);
 window.addEventListener('DOMContentLoaded', domContentLoadedHandle);
 
 /* Scrool Event to keep nav bar fixed */
-var $navBar = document.querySelector('.nav-bar');
-window.addEventListener('wheel', function (e) {
+const $navBar = document.querySelector('.nav-bar');
+window.addEventListener('wheel', e => {
   if (e.deltaY < 0) {
     $searchBar.classList.add('fixed-postion');
     $navBar.classList.add('fixed-position');
@@ -575,5 +573,4 @@ window.addEventListener('wheel', function (e) {
     $searchBar.classList.remove('fixed-postion');
     $navBar.classList.remove('fixed-position');
   }
-
 });
