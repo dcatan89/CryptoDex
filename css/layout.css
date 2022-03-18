@@ -5,7 +5,10 @@
 .container {
   max-width: 575px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+}
+
+.nav-header {
+  width: 100vw;
 }
 
 .row {
@@ -28,7 +31,11 @@
 }
 
 .div-headers > h2 {
-  font-size: 24px;
+  font-size: 1rem;
+}
+
+.global-data {
+  font-size: 1rem;
 }
 
 @media screen and (max-width: 575px) {
@@ -46,20 +53,22 @@
     display: none;
   }
 
-  .col-fourth {
+  .col-third {
     width: calc(100% / 3);
   }
 }
 
 @media screen and (min-width: 768px) {
-  .container {
+  .container,
+  .nav-header {
     max-width: 900px;
   }
 
   .col-full,
   .col-half,
-  .col-third {
-    padding: 0 0.75rem;
+  .col-third,
+  .col-fourth {
+    padding: 0 0.25rem;
   }
 
   .col-half {
@@ -67,11 +76,11 @@
   }
 
   .col-third {
-    width: calc(100% / 3);
+    width: 33%;
   }
 
   .col-fourth {
-    width: 24.4%;
+    width: 25%;
   }
 
   .div-headers > h2 {

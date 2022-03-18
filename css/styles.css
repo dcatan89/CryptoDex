@@ -1,5 +1,9 @@
 .bgc-lblack {
-  background-color: rgb(33, 35, 40, 0.7);
+  background-color: rgb(33, 35, 40, 0.9);
+}
+
+.bgc-black {
+  background-color: rgb(43, 42, 42);
 }
 
 .bgc-lblack-transparent {
@@ -38,7 +42,8 @@
 }
 
 .border-bottom-white {
-  border-bottom: solid rgba(255, 255, 255, 0.982);
+  border-bottom: thin solid rgba(199, 194, 194, 0.982);
+  box-shadow: 0 0.125rem 0.125rem rgb(109, 108, 108);
 }
 
 .hamburger-icon {
@@ -116,14 +121,6 @@ input {
 .watchlist-header:hover,
 .trending-header:hover {
   color: rgb(174, 174, 244);
-}
-
-.watchlist-row {
-  top: 140px;
-}
-
-.trending-row {
-  top: 180px;
 }
 
 .search-header:hover,
@@ -259,4 +256,13 @@ button:hover,
   height: 25px;
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.434);
+  justify-content: center;
+}
+
+.font-sm {
+  font-size: 1rem;
+}
+
+.vh100 {
+  height: 100vh;
 }

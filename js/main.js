@@ -146,7 +146,7 @@ function searchID(id) {
     $mainHeader.textContent = 'Assets: ' + crypto.asset_id;
     $percentChange.textContent = Math.round(crypto.change_24h * 1000) / 1000 + '%';
     $Symbol.textContent = crypto.asset_id;
-    $CurrentPrice.textContent = '$ ' + (Math.round(crypto.price * 100000) / 100000).toLocaleString('en-US');
+    $CurrentPrice.textContent = '$ ' + (Math.round(crypto.price * 10000000) / 10000000);
     $Cap.textContent = '$ ' + Math.round(crypto.market_cap).toLocaleString('en-US');
     $volume.textContent = '$ ' + Math.round(crypto.volume_24h).toLocaleString('en-US');
     dataView('cryptos');
@@ -384,21 +384,21 @@ function generateTrendingDOM(trending, i) {
   const $h2DataPrice = document.createElement('h2');
   const $h2DataChange = document.createElement('h2');
 
-  $li.className = 'col-fourth margin-sides';
+  $li.className = 'col-fourth';
   $divBlueBox.className = 'row wrap margin-top info-box';
   $divHeader.className = 'row col-full  justify-center';
   $divContent.className = 'col-full row';
   $divContentHeader.className = 'col-half div-headers';
   $divContentData.className = 'col-half div-headers';
-  $h2Header.className = '';
-  $h2Rank.className = 'row justify-center';
-  $h2Symbol.className = 'row justify-center';
-  $h2Price.className = 'row justify-center';
-  $h2Change.className = 'row justify-center';
-  $h2DataRank.className = 'row justify-center';
-  $h2DataSymbol.className = 'row justify-center';
-  $h2DataPrice.className = 'row justify-center';
-  $h2DataChange.className = 'row justify-center';
+  $h2Header.className = 'font-sm';
+  $h2Rank.className = 'row justify-center font-sm';
+  $h2Symbol.className = 'row justify-center font-sm';
+  $h2Price.className = 'row justify-center font-sm';
+  $h2Change.className = 'row justify-center font-sm';
+  $h2DataRank.className = 'row justify-center font-sm';
+  $h2DataSymbol.className = 'row justify-center font-sm';
+  $h2DataPrice.className = 'row justify-center font-sm';
+  $h2DataChange.className = 'row justify-center font-sm';
 
   if (trending.name) {
     $h2Header.textContent = trending.name;
@@ -413,7 +413,7 @@ function generateTrendingDOM(trending, i) {
 
   $h2DataRank.textContent = i;
   $h2DataSymbol.textContent = trending.asset_id;
-  $h2DataPrice.textContent = '$' + Math.round(trending.price * 10000) / 10000;
+  $h2DataPrice.textContent = '$' + Math.round(trending.price * 100000) / 100000;
   $h2DataChange.textContent = Math.round(trending.change_1h * 100000) / 100000 + '%';
 
   $li.appendChild($divBlueBox);
@@ -562,15 +562,13 @@ $ulEntries.addEventListener('click', handleEdit);
 window.addEventListener('DOMContentLoaded', domContentLoadedHandle);
 
 /* Scrool Event to keep nav bar fixed */
-const $navBar = document.querySelector('.nav-bar');
+const $navBar = document.querySelector('.nav-header');
 window.addEventListener('wheel', e => {
   if (e.deltaY < 0) {
-    $searchBar.classList.add('fixed-postion');
     $navBar.classList.add('fixed-position');
   }
 
   if (window.scrollY === 0) {
-    $searchBar.classList.remove('fixed-postion');
     $navBar.classList.remove('fixed-position');
   }
 });
