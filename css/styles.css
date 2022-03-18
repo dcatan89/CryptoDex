@@ -263,6 +263,10 @@ button:hover,
   text-align: center;
 }
 
+.text-right {
+  text-align: right;
+}
+
 .vh100 {
   height: 100vh;
 }
