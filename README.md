@@ -19,4 +19,5 @@ User Can add to their watchlist of favorite cryptos
 
 
 User can remove or view their individual Cryptos stats
-<img width="914" alt="Screen Shot 2022-05-04 at 10 50 56 AM" src="https://user-images.githubusercontent.com/90487207/166749129-8dc68da1-09c9-4c78-95f9-5950833f906f.png">
+<img width="967" alt="Screen Shot 2022-05-04 at 10 51 31 AM" src="https://user-images.githubusercontent.com/90487207/166749712-4919611d-1e67-49ec-8cbc-8f6fddd7b64a.png">
+
