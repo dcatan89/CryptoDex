@@ -9,7 +9,11 @@ I wanted to build this application because it combined my interest in cryptos wi
 Here is the link to the live version:
 Live Version: https://dcatan89.github.io/CryptoDex/
 
+Strech Features: I would love to add a visual graph of the market change like how stock exchanges show the hourly or 24 hour period of percent change.
+
 Technologies Used: Vanilla JavaScript, HTML, CSS3, RESTful API, AJAX, Media-queries for responsive design, SmokePaprika's API
+
+System Requirments: Everything was built with vanilla JS, HTML, and CSS3, Third-Party API CoinPaprika (however any crypto API with good data can work)
 
 Demo for Searching Assets and adding them to a watchlist:
 ![May-05-2022 14-50-39](https://user-images.githubusercontent.com/90487207/167031929-aa0abbc9-d488-4875-8133-6f1861418be6.gif)
