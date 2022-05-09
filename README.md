@@ -6,20 +6,30 @@ A web application for cryptocurrency enthusiasts as well as casual traders who w
 
 I wanted to build this application because it combined my interest in cryptos with wanting to implement my knowledge of restful APIs. Some web apps are hard to follow and can be confusing to read for people who don't generally follow stock exchanges so I wanted to build this application for ease of use.
 
-Here is the link to the live version:
-Live Version: https://dcatan89.github.io/CryptoDex/
 
-Strech Features: I would love to add a visual graph of the market change like how stock exchanges show the hourly or 24 hour period of percent change.
+Live Version: [CryptoDex](https://dcatan89.github.io/CryptoDex)
 
-Technologies Used: Vanilla JavaScript, HTML, CSS3, RESTful API, AJAX, Media-queries for responsive design, SmokePaprika's API
+##  Features: 
+- User Can search for CryptoCurriencies. 
+- User Can View data for CryptoCurriencies.
+- User Can Add cryptos to their watchlist. 
+- User Can Remove cryptos from their watchlist. 
+- User Can View Current trending coins.  
 
-System Requirments: Everything was built with vanilla JS, HTML, and CSS3, Third-Party API CoinPaprika (however any crypto API with good data can work)
+## Technologies Used:
+  -JavaScript  
+  -HTML  
+  -CSS3  
+  -RESTful API  
+  -AJAX  
+  -Media-queries for responsive design  
+  -SmokePaprika's API  
 
-Demo for Searching Assets and adding them to a watchlist:
+## Demo for Searching Assets and adding them to a watchlist:
 ![May-05-2022 14-50-39](https://user-images.githubusercontent.com/90487207/167031929-aa0abbc9-d488-4875-8133-6f1861418be6.gif)
 
 
-Demo for removing from watchlist and seeing the TOP 100 cryptos:
+## Demo for removing from watchlist and seeing the TOP 100 cryptos:
 ![May-05-2022 14-51-56](https://user-images.githubusercontent.com/90487207/167031986-a87f356c-26f3-4a53-b68b-1fb53ced59a0.gif)
 
 
