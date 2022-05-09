@@ -16,6 +16,9 @@ Live Version: [CryptoDex](https://dcatan89.github.io/CryptoDex)
 - User Can Remove cryptos from their watchlist. 
 - User Can View Current trending coins.  
 
+### Stretch Features 
+I want to implement a graph feature that shows the progression of market change  within a time period like 8 or 24 hours.
+
 ## Technologies Used:
   -JavaScript  
   -HTML  
@@ -24,12 +27,15 @@ Live Version: [CryptoDex](https://dcatan89.github.io/CryptoDex)
   -AJAX  
   -Media-queries for responsive design  
   -SmokePaprika's API  
+  
 
-## Demo for Searching Assets and adding them to a watchlist:
+## Preview
+
+### Demo for Searching Assets and adding them to a watchlist:
 ![May-05-2022 14-50-39](https://user-images.githubusercontent.com/90487207/167031929-aa0abbc9-d488-4875-8133-6f1861418be6.gif)
 
 
-## Demo for removing from watchlist and seeing the TOP 100 cryptos:
+### Demo for removing from watchlist and seeing the TOP 100 cryptos:
 ![May-05-2022 14-51-56](https://user-images.githubusercontent.com/90487207/167031986-a87f356c-26f3-4a53-b68b-1fb53ced59a0.gif)
 
 
