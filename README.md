@@ -20,13 +20,13 @@ Live Version: [CryptoDex](https://dcatan89.github.io/CryptoDex)
 I want to implement a graph feature that shows the progression of market change  within a time period like 8 or 24 hours.
 
 ## Technologies Used:
-  -JavaScript  
-  -HTML  
-  -CSS3  
-  -RESTful API  
-  -AJAX  
-  -Media-queries for responsive design  
-  -SmokePaprika's API  
+  - JavaScript  
+  - HTML  
+  - CSS3  
+  - RESTful API  
+  - AJAX  
+  - Media-queries for responsive design  
+  - SmokePaprika's API  
   
 
 ## Preview
