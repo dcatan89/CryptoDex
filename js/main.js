@@ -107,7 +107,6 @@ const $marketChange = document.querySelector('.for-header3');
 const $cryptosNumber = document.querySelector('.for-header4');
 
 const targetUrl = encodeURIComponent('https://api.coinpaprika.com/v1/global');
-const apiUrl = encodeURIComponent('https://www.cryptingup.com/api/assets/');
 
 const xhr = new XMLHttpRequest();
 xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
@@ -135,7 +134,7 @@ const $mainHeader = document.querySelector('.main-header');
 function searchID(id) {
   const value = id.toUpperCase();
   const xhr2 = new XMLHttpRequest();
-  xhr2.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + apiUrl + value);
+  xhr2.open('GET', 'https://www.cryptingup.com/api/assets/' + value);
   xhr2.setRequestHeader('token', 'abc123');
   xhr2.responseType = 'json';
   xhr2.addEventListener('load', () => {
@@ -403,18 +402,18 @@ function generateTrendingDOM(trending, i) {
   if (trending.name) {
     $h2Header.textContent = trending.name;
   } else {
-    $h2Header.textContent = trending.asset_id;
+    $h2Header.textContent = trending.id;
   }
 
   $h2Rank.textContent = 'Rank';
   $h2Symbol.textContent = 'Symbol';
   $h2Price.textContent = 'Price';
-  $h2Change.textContent = '%Change 1H';
+  $h2Change.textContent = '%Change 24H';
 
   $h2DataRank.textContent = i;
-  $h2DataSymbol.textContent = trending.asset_id;
-  $h2DataPrice.textContent = '$' + Math.round(trending.price * 100000) / 100000;
-  $h2DataChange.textContent = Math.round(trending.change_1h * 100000) / 100000 + '%';
+  $h2DataSymbol.textContent = trending.id;
+  $h2DataPrice.textContent = '$' + Math.round(trending.priceUsd * 100000) / 100000;
+  $h2DataChange.textContent = Math.round(trending.changePercent24Hr * 100000) / 100000 + '%';
 
   $li.appendChild($divBlueBox);
   $divBlueBox.appendChild($divHeader);
@@ -435,7 +434,7 @@ function generateTrendingDOM(trending, i) {
 
 /* TOP 100 API */
 
-const apiUrlAll = encodeURIComponent('https://www.cryptingup.com/api/assets');
+const apiUrlAll = encodeURIComponent('https://api.coincap.io/v2/assets');
 const $ulTrending = document.querySelector('#trending');
 
 const xhr3 = new XMLHttpRequest();
@@ -446,10 +445,11 @@ xhr3.addEventListener('load', () => {
   let i;
   const endpoint = 99;
   for (i = 0; i <= endpoint; i++) {
-    const $entries = generateTrendingDOM(xhr3.response.assets[i], i + 1);
+    const $entries = generateTrendingDOM(xhr3.response.data[i], i);
     $ulTrending.appendChild($entries);
   }
-});
+}
+);
 xhr3.send();
 
 /* Bubbling Click Event for Watchlist */
@@ -483,7 +483,7 @@ function dataForWatchList() {
   } else {
     $mainHeader.textContent = 'Asset Overview';
   }
-  for (var i = 0; i < data.watchlist.length; i++) {
+  for (let i = 0; i < data.watchlist.length; i++) {
     if (data.edit === data.watchlist[i].id) {
       $subHead.textContent = data.watchlist[i].name;
       $edit1.textContent = data.watchlist[i].percentChange;
