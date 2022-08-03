@@ -107,6 +107,7 @@ const $marketChange = document.querySelector('.for-header3');
 const $cryptosNumber = document.querySelector('.for-header4');
 
 const targetUrl = encodeURIComponent('https://api.coinpaprika.com/v1/global');
+const searchBarUrl = encodeURIComponent('https://api.coincap.io/v2/assets/');
 
 const xhr = new XMLHttpRequest();
 xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
@@ -132,22 +133,21 @@ const $subHeader = document.querySelector('.sub-header-crypto');
 const $mainHeader = document.querySelector('.main-header');
 
 function searchID(id) {
-  const value = id.toUpperCase();
+  const value = id.toLowerCase();
   const xhr2 = new XMLHttpRequest();
-  xhr2.open('GET', 'https://www.cryptingup.com/api/assets/' + value);
+  xhr2.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + searchBarUrl + value);
   xhr2.setRequestHeader('token', 'abc123');
   xhr2.responseType = 'json';
   xhr2.addEventListener('load', () => {
+    const crypto = xhr2.response.data;
 
-    const crypto = xhr2.response.asset;
-
-    $subHeader.textContent = crypto.name;
-    $mainHeader.textContent = 'Assets: ' + crypto.asset_id;
-    $percentChange.textContent = Math.round(crypto.change_24h * 1000) / 1000 + '%';
-    $Symbol.textContent = crypto.asset_id;
-    $CurrentPrice.textContent = '$ ' + (Math.round(crypto.price * 10000000) / 10000000);
-    $Cap.textContent = '$ ' + Math.round(crypto.market_cap).toLocaleString('en-US');
-    $volume.textContent = '$ ' + Math.round(crypto.volume_24h).toLocaleString('en-US');
+    $subHeader.textContent = crypto.id.toUpperCase();
+    $mainHeader.textContent = 'Assets: ' + crypto.symbol;
+    $percentChange.textContent = Math.round(crypto.changePercent24Hr * 1000) / 1000 + '%';
+    $Symbol.textContent = crypto.symbol;
+    $CurrentPrice.textContent = '$ ' + (Math.round(crypto.priceUsd * 10000000) / 10000000);
+    $Cap.textContent = '$ ' + Math.round(crypto.marketCapUsd).toLocaleString('en-US');
+    $volume.textContent = '$ ' + Math.round(crypto.volumeUsd24Hr).toLocaleString('en-US');
     dataView('cryptos');
 
   });
@@ -411,7 +411,7 @@ function generateTrendingDOM(trending, i) {
   $h2Change.textContent = '%Change 24H';
 
   $h2DataRank.textContent = i;
-  $h2DataSymbol.textContent = trending.id;
+  $h2DataSymbol.textContent = trending.symbol;
   $h2DataPrice.textContent = '$' + Math.round(trending.priceUsd * 100000) / 100000;
   $h2DataChange.textContent = Math.round(trending.changePercent24Hr * 100000) / 100000 + '%';
 
@@ -445,7 +445,7 @@ xhr3.addEventListener('load', () => {
   let i;
   const endpoint = 99;
   for (i = 0; i <= endpoint; i++) {
-    const $entries = generateTrendingDOM(xhr3.response.data[i], i);
+    const $entries = generateTrendingDOM(xhr3.response.data[i], i + 1);
     $ulTrending.appendChild($entries);
   }
 }
