@@ -140,6 +140,11 @@ function searchID(id) {
   xhr2.responseType = 'json';
   xhr2.addEventListener('load', () => {
     const crypto = xhr2.response.data;
+    if (crypto === undefined) {
+      alert('Cannot find Crypto, Please try again');
+      dataView('global');
+      $mainHeader.textContent = 'Global';
+    }
 
     $subHeader.textContent = crypto.id.toUpperCase();
     $mainHeader.textContent = 'Assets: ' + crypto.symbol;
